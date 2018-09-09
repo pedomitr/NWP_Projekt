@@ -184,6 +184,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MovesPage.h" />
     <ClInclude Include="NWP_projekt.h" />
     <ClInclude Include="NWP_projektDoc.h" />
     <ClInclude Include="NWP_projektView.h" />
@@ -193,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MovesPage.cpp" />
     <ClCompile Include="NWP_projekt.cpp" />
     <ClCompile Include="NWP_projektDoc.cpp" />
     <ClCompile Include="NWP_projektView.cpp" />
