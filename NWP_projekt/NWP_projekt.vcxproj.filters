@@ -39,6 +39,9 @@
     <ClInclude Include="MovesPage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NWP_projekt.cpp">
@@ -70,12 +73,21 @@
     <ResourceCompile Include="NWPprojekt.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\NWP_projektDoc.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\NWP_projekt.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\normal_chess_set_symbols_igor_k_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\figure.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
