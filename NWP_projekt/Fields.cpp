@@ -23,7 +23,7 @@ Fields::~Fields()
 }
 
 
-POINT GetFieldPosition(POINT point, Fields* fields)
+POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 {
 	POINT field_position;
 	for (int i = 0; i < 8; ++i)
@@ -36,12 +36,13 @@ POINT GetFieldPosition(POINT point, Fields* fields)
 		if (point.y >= fields->row[i].x && point.y <= fields->row[i].y)
 			field_position.y = i;
 	}
+	return field_position;
 }
 
 
-TCHAR* GetFieldName(POINT field_position) 
+TCHAR* Fields::GetFieldName(POINT field_position) 
 {
-	TCHAR* name;
+	TCHAR* name=_T("");
 	switch (field_position.x) {
 	case 0:
 		name = _T("a");
