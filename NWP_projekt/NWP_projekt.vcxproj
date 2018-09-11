@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Fields.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MovesPage.h" />
     <ClInclude Include="NWP_projekt.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Fields.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MovesPage.cpp" />
     <ClCompile Include="NWP_projekt.cpp" />
