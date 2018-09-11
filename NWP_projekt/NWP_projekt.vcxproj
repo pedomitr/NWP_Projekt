@@ -215,7 +215,9 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\chess_set.bmp" />
     <Image Include="res\figure.png" />
+    <Image Include="res\figurines.png" />
     <Image Include="res\normal_chess_set_symbols_igor_k_01.png" />
     <Image Include="res\NWP_projekt.ico" />
     <Image Include="res\NWP_projektDoc.ico" />
