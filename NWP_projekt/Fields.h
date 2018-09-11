@@ -4,7 +4,11 @@ class Fields
 public:
 	POINT column[8];
 	POINT row[8];
+	POINT field_position;
+	TCHAR* field_name;
 	Fields(RECT first_Field, int hField);
 	~Fields();
+	POINT GetFieldPosition(POINT point, Fields* fields);
+	TCHAR* GetFieldName(POINT field_position);
 };
 
