@@ -10,5 +10,6 @@ public:
 	~Fields();
 	POINT GetFieldPosition(POINT point, Fields* fields);
 	TCHAR* GetFieldName(POINT field_position);
+	RECT GetField(POINT field_position, RECT firstField);
 };
 

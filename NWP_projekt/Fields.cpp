@@ -29,12 +29,18 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 	for (int i = 0; i < 8; ++i)
 	{
 		if (point.x >= fields->column[i].x && point.x <= fields->column[i].y)
+		{
 			field_position.x = i;
+			break;
+		}
 	}
 	for (int i = 0; i < 8; ++i)
 	{
 		if (point.y >= fields->row[i].x && point.y <= fields->row[i].y)
+		{
 			field_position.y = i;
+			break;
+		}
 	}
 	return field_position;
 }
@@ -42,58 +48,67 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 
 TCHAR* Fields::GetFieldName(POINT field_position) 
 {
-	TCHAR* name=_T("");
+	TCHAR name[4] = _T("");
 	switch (field_position.x) {
 	case 0:
-		name = _T("a");
+		_tcscat_s(name, 2, _T("a"));
 		break;
 	case 1:
-		name = _T("b");
+		_tcscat_s(name, 2, _T("b"));
 		break;
 	case 2:
-		name = _T("c");	
+		_tcscat_s(name, 2, _T("c"));
 		break;
 	case 3:
-		name = _T("d");
+		_tcscat_s(name, 2, _T("d"));
 		break;
 	case 4:
-		name = _T("e");
+		_tcscat_s(name, 2, _T("e"));
 		break;
 	case 5:
-		name = _T("f");
+		_tcscat_s(name, 2, _T("f"));
 		break;
 	case 6:
-		name = _T("g");
+		_tcscat_s(name, 2, _T("g"));
 		break;
 	case 7:
-		name = _T("h");
+		_tcscat_s(name, 2, _T("h"));
 	}
 	
 	switch (field_position.y) {
 	case 0:
-		name += '1';
+		_tcscat_s(name, 4, _T("1"));
 		break;
 	case 1:
-		name += '2';
+		_tcscat_s(name, 4, _T("2"));
 		break;
 	case 2:
-		name += '3';
+		_tcscat_s(name, 4, _T("3"));
 		break;
 	case 3:
-		name += '4';
+		_tcscat_s(name, 4, _T("4"));
 		break;
 	case 4:
-		name += '5';
+		_tcscat_s(name, 4, _T("5"));
 		break;
 	case 5:
-		name += '6';
+		_tcscat_s(name, 4, _T("6"));
 		break;
 	case 6:
-		name += '7';
+		_tcscat_s(name, 4, _T("7"));
 		break;
 	case 7:
-		name += '8';
+		_tcscat_s(name, 4, _T("8"));
 	}
 	return name;
+}
+
+RECT Fields::GetField(POINT field_position, RECT firstField)
+{
+	RECT rc = { 0,0,0,0 };
+	if (field_position.x > 7 && field_position.y > 7) return rc;
+	rc = { firstField.left + field_position.x, firstField.top - field_position.y, 
+		firstField.right + field_position.x, firstField.bottom - field_position.y};
+	return rc;
 }
 
