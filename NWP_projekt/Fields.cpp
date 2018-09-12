@@ -22,7 +22,7 @@ Fields::~Fields()
 {
 }
 
-
+//Vraæa redak i stupac odabranog polja na ploèi
 POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 {
 	POINT field_position;
@@ -103,6 +103,7 @@ TCHAR* Fields::GetFieldName(POINT field_position)
 	return name;
 }
 
+//Vraæa RECT odreðenog polja sa ploèe
 RECT Fields::GetField(POINT field_position, RECT firstField)
 {
 	RECT rc = { 0,0,0,0 };
