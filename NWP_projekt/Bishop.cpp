@@ -2,9 +2,8 @@
 #include "Bishop.h"
 
 
-Bishop::Bishop(TCHAR _name, POINT _position, bool _color)
+Bishop::Bishop(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -17,7 +16,7 @@ Bishop::~Bishop()
 POINT * Bishop::PossibleMoves()
 {
 	int i = 0, j = 0;
-	POINT* moves;
+	POINT* moves = new POINT[13];
 	for (; i < position.x  && i < (7 - position.y); ++i, ++j)
 	{
 		moves[j].x = position.x - (i + 1);

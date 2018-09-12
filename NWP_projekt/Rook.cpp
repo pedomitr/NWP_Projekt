@@ -2,9 +2,8 @@
 #include "Rook.h"
 
 
-Rook::Rook(TCHAR _name, POINT _position, bool _color)
+Rook::Rook(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -16,7 +15,7 @@ Rook::~Rook()
 
 POINT* Rook::PossibleMoves() {
 	int i = 0, j = 0;
-	POINT* moves;
+	POINT* moves = new POINT[14];
 	for (; i < 8 ; ++i)
 	{
 		if (i == position.x) continue;

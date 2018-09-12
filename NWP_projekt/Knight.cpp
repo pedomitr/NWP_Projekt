@@ -2,9 +2,8 @@
 #include "Knight.h"
 
 
-Knight::Knight(TCHAR _name, POINT _position, bool _color)
+Knight::Knight(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -17,7 +16,7 @@ Knight::~Knight()
 POINT * Knight::PossibleMoves()
 {
 	int i = 0;
-	POINT* moves;
+	POINT* moves = new POINT[8];
 	if (position.x > 0 && position.y < 6)
 	{
 		moves[i].x = position.x - 1;

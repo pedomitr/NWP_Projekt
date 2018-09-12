@@ -2,9 +2,8 @@
 #include "Pawn.h"
 
 
-Pawn::Pawn(TCHAR _name, POINT _position, bool _color)
+Pawn::Pawn(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -17,7 +16,7 @@ Pawn::~Pawn()
 POINT * Pawn::PossibleMoves()
 {
 	int j = 0;
-	POINT* moves;
+	POINT* moves = new POINT[4];
 	if (color)
 	{
 		if (position.y == 1)

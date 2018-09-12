@@ -2,9 +2,8 @@
 #include "Queen.h"
 
 
-Queen::Queen(TCHAR _name, POINT _position, bool _color)
+Queen::Queen(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -16,7 +15,7 @@ Queen::~Queen()
 POINT * Queen::PossibleMoves()
 {
 	int i = 0, j = 0;
-	POINT* moves;
+	POINT* moves = new POINT[27];
 	for (; i < position.x && i < (7 - position.y); ++i, ++j)
 	{
 		moves[j].x = position.x - (i + 1);

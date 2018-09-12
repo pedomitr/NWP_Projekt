@@ -1,13 +1,14 @@
 #pragma once
 #include "Piece.h"
-class King :
+struct King :
 	public Piece
 {
-	TCHAR name;
+private:
+	TCHAR* name = _T("K");
 	POINT position;
 	bool color;
 public:
-	King(TCHAR name, POINT position, bool color);
+	King(POINT position, bool color);
 	~King();
 	POINT* PossibleMoves();
 	void MoveTaken(POINT field);

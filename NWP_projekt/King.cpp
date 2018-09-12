@@ -2,9 +2,8 @@
 #include "King.h"
 
 
-King::King(TCHAR _name, POINT _position, bool _color)
+King::King(POINT _position, bool _color)
 {
-	name = _name;
 	position = _position;
 	color = _color;
 }
@@ -16,7 +15,7 @@ King::~King()
 POINT * King::PossibleMoves()
 {
 	int i = 0, j = 0;
-	POINT* moves;
+	POINT* moves = new POINT[8];
 	if (position.x > 0 && position.y < 7)
 	{
 		moves[j].x = position.x - 1;

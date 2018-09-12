@@ -1,13 +1,14 @@
 #pragma once
 #include "Piece.h"
-class Knight :
+struct Knight :
 	public Piece
 {
-	TCHAR name;
+private:
+	TCHAR* name = _T("N");
 	POINT position;
 	bool color;
 public:
-	Knight(TCHAR name, POINT position, bool color));
+	Knight(POINT position, bool color);
 	~Knight();
 	POINT* PossibleMoves();
 	void MoveTaken(POINT field);

@@ -1,13 +1,14 @@
 #pragma once
 #include "Piece.h"
-class Bishop :
+struct Bishop :
 	public Piece
 {
-	TCHAR name;
+private:
+	TCHAR* name = _T("B");
 	POINT position;
 	bool color;
 public:
-	Bishop(TCHAR name, POINT position, bool color);
+	Bishop(POINT position, bool color);
 	~Bishop();
 	POINT* PossibleMoves();
 	void MoveTaken(POINT field);

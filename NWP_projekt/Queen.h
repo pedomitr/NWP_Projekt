@@ -3,11 +3,12 @@
 class Queen :
 	public Piece
 {
-	TCHAR name;
+private:
+	TCHAR* name = _T("Q");
 	POINT position;
 	bool color;
 public:
-	Queen(TCHAR name, POINT position, bool color);
+	Queen(POINT position, bool color);
 	~Queen();
 	POINT* PossibleMoves();
 	void MoveTaken(POINT field);

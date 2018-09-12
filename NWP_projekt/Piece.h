@@ -1,5 +1,5 @@
 #pragma once
-class Piece
+struct Piece
 {
 	TCHAR name;
 	RECT position;
