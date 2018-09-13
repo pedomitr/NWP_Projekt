@@ -12,58 +12,58 @@ King::~King()
 {
 }
 
-POINT * King::PossibleMoves()
+std::vector<POINT> King::PossibleMoves()
 {
-	int i = 0, j = 0;
-	POINT* moves = new POINT[8];
+	std::vector<POINT> moves;
+	POINT temp;
 	if (position.x > 0 && position.y < 7)
 	{
-		moves[j].x = position.x - 1;
-		moves[j].y = position.y + 1;
-		++j;
+		temp.x = position.x - 1;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (position.x > 0 && position.y > 0)
 	{
-		moves[j].x = position.x - 1;
-		moves[j].y = position.y - 1;
-		++j;
+		temp.x = position.x - 1;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y < 7)
 	{
-		moves[j].x = position.x + 1;
-		moves[j].y = position.y + 1;
-		++j;
+		temp.x = position.x + 1;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y > 0)
 	{
-		moves[j].x = position.x + 1;
-		moves[j].y = position.y - 1;
-		++j;
+		temp.x = position.x + 1;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 
 	if (position.x > 0 )
 	{
-		moves[j].x = position.x - 1;
-		moves[j].y = position.y;
-		++j;
+		temp.x = position.x - 1;
+		temp.y = position.y;
+		moves.push_back(temp);
 	}
 	if (position.x < 7)
 	{
-		moves[j].x = position.x + 1;
-		moves[j].y = position.y;
-		++j;
+		temp.x = position.x + 1;
+		temp.y = position.y;
+		moves.push_back(temp);
 	}
 	if (position.y < 7)
 	{
-		moves[j].x = position.x ;
-		moves[j].y = position.y + 1;
-		++j;
+		temp.x = position.x ;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (position.y > 0)
 	{
-		moves[j].x = position.x;
-		moves[j].y = position.y - 1;
-		++j;
+		temp.x = position.x;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 	return moves;
 }

@@ -4,13 +4,13 @@ struct Rook :
 	public Piece
 {
 private:
-	TCHAR* name = _T("R");
+	std::string name = "R";
 	POINT position;
 	bool color;
 public:
 	Rook(POINT position, bool color);
 	~Rook();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };
 

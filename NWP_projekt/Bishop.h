@@ -4,12 +4,12 @@ struct Bishop :
 	public Piece
 {
 private:
-	TCHAR* name = _T("B");
+	std::string name = "B";
 	POINT position;
 	bool color;
 public:
 	Bishop(POINT position, bool color);
 	~Bishop();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };

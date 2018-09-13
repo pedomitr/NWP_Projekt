@@ -13,58 +13,58 @@ Knight::~Knight()
 {
 }
 
-POINT * Knight::PossibleMoves()
+std::vector<POINT> Knight::PossibleMoves()
 {
-	int i = 0;
-	POINT* moves = new POINT[8];
+	std::vector<POINT> moves;
+	POINT temp;
 	if (position.x > 0 && position.y < 6)
 	{
-		moves[i].x = position.x - 1;
-		moves[i].y = position.y + 2;
-		++i;
+		temp.x = position.x - 1;
+		temp.y = position.y + 2;
+		moves.push_back(temp);
 	}
 	if (position.x > 0 && position.y > 1)
 	{
-		moves[i].x = position.x - 1;
-		moves[i].y = position.y - 2;
-		++i;
+		temp.x = position.x - 1;
+		temp.y = position.y - 2;
+		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y < 6)
 	{
-		moves[i].x = position.x + 1;
-		moves[i].y = position.y + 2;
-		++i;
+		temp.x = position.x + 1;
+		temp.y = position.y + 2;
+		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y > 1)
 	{
-		moves[i].x = position.x + 1;
-		moves[i].y = position.y - 2;
-		++i;
+		temp.x = position.x + 1;
+		temp.y = position.y - 2;
+		moves.push_back(temp);
 	}
 
 	if (position.x > 1 && position.y < 7)
 	{
-		moves[i].x = position.x - 2;
-		moves[i].y = position.y + 1;
-		++i;
+		temp.x = position.x - 2;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (position.x > 1 && position.y > 0)
 	{
-		moves[i].x = position.x - 2;
-		moves[i].y = position.y - 1;
-		++i;
+		temp.x = position.x - 2;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 	if (position.x < 6 && position.y < 7)
 	{
-		moves[i].x = position.x + 2;
-		moves[i].y = position.y + 1;
-		++i;
+		temp.x = position.x + 2;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (position.x < 6 && position.y > 0)
 	{
-		moves[i].x = position.x + 2;
-		moves[i].y = position.y - 1;
-		++i;
+		temp.x = position.x + 2;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 	return moves;
 }

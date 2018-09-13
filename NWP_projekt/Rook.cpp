@@ -13,23 +13,24 @@ Rook::~Rook()
 {
 }
 
-POINT* Rook::PossibleMoves() {
-	int i = 0, j = 0;
-	POINT* moves = new POINT[14];
-	for (; i < 8 ; ++i)
+std::vector<POINT> Rook::PossibleMoves() {
+	int i = 0;
+	std::vector<POINT> moves;
+	POINT temp;
+	for (i = 0; i < 8; ++i)
 	{
 		if (i == position.x) continue;
-		moves[j].x = i;
-		moves[j].y = position.y;
-		++j;
+		temp.x = i;
+		temp.y = position.y;
+		moves.push_back(temp);
 
 	}
 	for (i = 0; i < 8; ++i)
 	{
 		if (i == position.y) continue;
-		moves[j].x = position.x;
-		moves[j].y = i;
-		++j;
+		temp.x = position.x;
+		temp.y = i;
+		moves.push_back(temp);
 	}
 	return moves;
 }

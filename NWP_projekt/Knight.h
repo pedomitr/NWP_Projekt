@@ -4,13 +4,13 @@ struct Knight :
 	public Piece
 {
 private:
-	TCHAR* name = _T("N");
+	std::string name = "N";
 	POINT position;
 	bool color;
 public:
 	Knight(POINT position, bool color);
 	~Knight();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };
 

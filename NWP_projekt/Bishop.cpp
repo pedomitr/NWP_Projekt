@@ -13,29 +13,34 @@ Bishop::~Bishop()
 {
 }
 
-POINT * Bishop::PossibleMoves()
+std::vector<POINT> Bishop::PossibleMoves()
 {
-	int i = 0, j = 0;
-	POINT* moves = new POINT[13];
-	for (; i < position.x  && i < (7 - position.y); ++i, ++j)
+	int i = 0;
+	std::vector<POINT> moves;
+	POINT temp;
+	for (; i < position.x && i < (7 - position.y); ++i)
 	{
-		moves[j].x = position.x - (i + 1);
-		moves[j].y = position.y + (i + 1);
+		temp.x = position.x - (i + 1);
+		temp.y = position.y + (i + 1);
+		moves.push_back(temp);
 	}
-	for (i = 0; i < position.x && i < position.y; ++i, ++j)
+	for (i = 0; i < position.x && i < position.y; ++i)
 	{
-		moves[j].x = position.x - (i + 1);
-		moves[j].y = position.y - (i + 1);
+		temp.x = position.x - (i + 1);
+		temp.y = position.y - (i + 1);
+		moves.push_back(temp);
 	}
-	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i, ++j)
+	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
 	{
-		moves[j].x = position.x + (i + 1);
-		moves[j].y = position.y + (i + 1);
+		temp.x = position.x + (i + 1);
+		temp.y = position.y + (i + 1);
+		moves.push_back(temp);
 	}
-	for (i = 0; i < (7 - position.x) && i < position.y; ++i, ++j)
+	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
 	{
-		moves[j].x = position.x + (i + 1);
-		moves[j].y = position.y - (i + 1);
+		temp.x = position.x + (i + 1);
+		temp.y = position.y - (i + 1);
+		moves.push_back(temp);
 	}
 	return moves;
 }

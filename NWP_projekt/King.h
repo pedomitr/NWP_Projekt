@@ -4,12 +4,12 @@ struct King :
 	public Piece
 {
 private:
-	TCHAR* name = _T("K");
+	std::string name = "K";
 	POINT position;
 	bool color;
 public:
 	King(POINT position, bool color);
 	~King();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };

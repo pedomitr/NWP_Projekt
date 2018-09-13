@@ -3,13 +3,13 @@
 struct Pawn :
 	public Piece
 {
-private:
-	TCHAR* name = _T("P");
+public:
+	std::string name = "P";
 	POINT position;
 	bool color;
 public:
 	Pawn(POINT position, bool color);
 	~Pawn();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };

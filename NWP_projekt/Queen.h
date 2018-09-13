@@ -4,12 +4,12 @@ class Queen :
 	public Piece
 {
 private:
-	TCHAR* name = _T("Q");
+	std::string name = "Q";
 	POINT position;
 	bool color;
 public:
 	Queen(POINT position, bool color);
 	~Queen();
-	POINT* PossibleMoves();
+	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
 };

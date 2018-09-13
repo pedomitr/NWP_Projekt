@@ -13,31 +13,33 @@ Pawn::~Pawn()
 {
 }
 
-POINT * Pawn::PossibleMoves()
+std::vector<POINT> Pawn::PossibleMoves()
 {
-	int j = 0;
-	POINT* moves = new POINT[4];
+	std::vector<POINT> moves;
+	POINT temp;
 	if (color)
 	{
 		if (position.y == 1)
 		{
-			moves[j].x = position.x;
-			moves[j].y = position.y + 2;
-			++j;
+			temp.x = position.x;
+			temp.y = position.y + 2;
+			moves.push_back(temp);
 		}
-		moves[j].x = position.x;
-		moves[j].y = position.y + 1;
+		temp.x = position.x;
+		temp.y = position.y + 1;
+		moves.push_back(temp);
 	}
 	if (!color)
 	{
 		if (position.y == 6)
 		{
-			moves[j].x = position.x;
-			moves[j].y = position.y - 2;
-			++j;
+			temp.x = position.x;
+			temp.y = position.y - 2;
+			moves.push_back(temp);
 		}
-		moves[j].x = position.x;
-		moves[j].y = position.y - 1;
+		temp.x = position.x;
+		temp.y = position.y - 1;
+		moves.push_back(temp);
 	}
 	//Dodati ako postoje figure suprotne boje za pojesti i en passan
 	return moves;
