@@ -2,10 +2,11 @@
 #include "Knight.h"
 
 
-Knight::Knight(POINT _position, bool _color)
+Knight::Knight(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 

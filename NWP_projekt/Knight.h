@@ -7,8 +7,9 @@ private:
 	std::string name = "N";
 	POINT position;
 	bool color;
+	int pieceID;
 public:
-	Knight(POINT position, bool color);
+	Knight(POINT position, bool color, int pieceID));
 	~Knight();
 	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);

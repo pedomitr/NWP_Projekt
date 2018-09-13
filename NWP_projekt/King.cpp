@@ -2,10 +2,11 @@
 #include "King.h"
 
 
-King::King(POINT _position, bool _color)
+King::King(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 King::~King()

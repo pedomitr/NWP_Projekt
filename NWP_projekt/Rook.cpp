@@ -2,10 +2,11 @@
 #include "Rook.h"
 
 
-Rook::Rook(POINT _position, bool _color)
+Rook::Rook(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 

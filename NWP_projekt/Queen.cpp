@@ -2,10 +2,11 @@
 #include "Queen.h"
 
 
-Queen::Queen(POINT _position, bool _color)
+Queen::Queen(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 Queen::~Queen()

@@ -2,10 +2,11 @@
 #include "Pawn.h"
 
 
-Pawn::Pawn(POINT _position, bool _color)
+Pawn::Pawn(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 

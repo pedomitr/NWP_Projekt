@@ -184,7 +184,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bishop.h" />
+    <ClInclude Include="Field.h" />
     <ClInclude Include="Fields.h" />
+    <ClInclude Include="General.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
     <ClInclude Include="MainFrm.h" />
@@ -194,6 +196,7 @@
     <ClInclude Include="NWP_projektView.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="PlayField.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="resource1.h" />
@@ -203,7 +206,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bishop.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Fields.cpp" />
+    <ClCompile Include="General.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -213,6 +218,7 @@
     <ClCompile Include="NWP_projektView.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="PlayField.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="stdafx.cpp">

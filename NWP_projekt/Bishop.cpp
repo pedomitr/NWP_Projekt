@@ -2,10 +2,11 @@
 #include "Bishop.h"
 
 
-Bishop::Bishop(POINT _position, bool _color)
+Bishop::Bishop(POINT _position, bool _color, int _pieceID)
 {
 	position = _position;
 	color = _color;
+	pieceID = _pieceID;
 }
 
 

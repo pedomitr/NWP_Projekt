@@ -7,8 +7,9 @@ public:
 	std::string name = "P";
 	POINT position;
 	bool color;
+	int pieceID;
 public:
-	Pawn(POINT position, bool color);
+	Pawn(POINT position, bool color, int pieceID));
 	~Pawn();
 	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);
