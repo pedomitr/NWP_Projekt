@@ -10,8 +10,11 @@ public:
 	COLORREF white_piece = RGB(255, 255, 255);
 	COLORREF black_piece = RGB(0, 0, 0);
 	bool white_turn = true;
+	bool piece_selected = false;
 	General();
 	~General();
 	void InitializeGame(CDC* pDC, RECT cr);
+	void PlayMove(CDC* pDC, RECT cr);
 };
+
 

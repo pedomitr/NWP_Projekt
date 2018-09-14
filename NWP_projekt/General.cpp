@@ -23,6 +23,7 @@ General::~General()
 
 void General::InitializeGame(CDC* pDC, RECT cr)
 {
+	white_turn = true;
 	HBRUSH brush = CreateSolidBrush(white_field);
 	HPEN pen = CreatePen(PS_SOLID, 4, black_field);
 	SetMapMode(*pDC, MM_ISOTROPIC);
@@ -44,9 +45,12 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	TCHAR *number_marks[] = { _T("1"), _T("2"), _T("3"), _T("4"),
 	_T("5"), _T("6"), _T("7"), _T("8") };
 
+
 	RECT markings;
 	int i = 1;
 	int j = 8;
+	SetTextColor(*pDC, black_field);
+	SetBkColor(*pDC, white_piece);
 	for each (TCHAR  *item in letter_marks)
 	{
 		markings = { i , j, ++i, j + 1 };
@@ -58,6 +62,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	{
 		markings = { i , --j, i + 1, j + 1 };
 		pDC->DrawText(item, -1, &markings, DT_VCENTER | DT_SINGLELINE);
+	
 	}
 
 	//Postavljanje figura
@@ -79,8 +84,8 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	}
 
 	//Crne
-	SetTextColor(*pDC, RGB(255, 255, 255));
-	SetBkColor(*pDC, RGB(0, 0, 0));
+	SetTextColor(*pDC, white_piece);
+	SetBkColor(*pDC, black_piece);
 
 	i = 1;
 	j = 0;
@@ -100,8 +105,100 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	//Inicijalizacija figura
 	RECT firstField = { 1, 7, 2, 8 };//za referencu
 	POINT p;
+	p.x = 0; p.y = 1;
+	std::vector<Piece> w_piece;
+	//int i = 0, j = 0;
+	//White
+	Pawn temp_p = { p, true, 0 };
+	for (p.x = 0, p.y = 1, i = 0; p.x < 8; ++i, ++p.x)
+	{
+		temp_p.position.x = p.x;
+		temp_p.pieceID = i;
+		w_piece.push_back(temp_p);
+	}
+	p.x = 0;
+	p.y = 0;
+	Rook temp_r = { p, true, ++i };
+	w_piece.push_back(temp_r);
 
-	p.x = 1;
-	p.y = 6;
-	Pawn w_p1 = { p, true, 0 };
+	++p.x;
+	Knight temp_n = { p, true, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	Bishop temp_b = { p, true, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	Queen temp_q = { p, true, ++i };
+	w_piece.push_back(temp_q);
+
+	++p.x;
+	King temp_k = { p, true, ++i };
+	w_piece.push_back(temp_k);
+
+	++p.x;
+	temp_b = { p, true, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_n = { p, true, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_r = { p, true, ++i };
+	w_piece.push_back(temp_r);
+
+	//Black
+	temp_p = { p, false, ++i };
+	for (p.x = 0, p.y = 6; p.x < 8; ++i, ++p.x)
+	{
+		temp_p.position.x = p.x;
+		temp_p.pieceID = i;
+		w_piece.push_back(temp_p);
+	}
+	p.x = 0;
+	p.y = 7;
+	temp_r = { p, false, ++i };
+	w_piece.push_back(temp_r);
+
+	++p.x;
+	temp_n = { p, false, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_b = { p, false, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_q = { p, false, ++i };
+	w_piece.push_back(temp_q);
+
+	++p.x;
+	temp_k = { p, false, ++i };
+	w_piece.push_back(temp_k);
+
+	++p.x;
+	temp_b = { p, false, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_n = { p, false, ++i };
+	w_piece.push_back(temp_n);
+
+	++p.x;
+	temp_r = { p, false, ++i };
+	w_piece.push_back(temp_r);
+
+
+}
+
+void General::PlayMove(CDC * pDC, RECT cr)
+{
+	SetMapMode(*pDC, MM_ISOTROPIC);
+	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
+	SetWindowExtEx(*pDC, 10, 10, 0);
+
+	if()
+	
 }
