@@ -2,6 +2,7 @@
 class General
 {
 public:
+	HWND hWnd = AfxGetApp()->m_pMainWnd->m_hWnd;
 	std::string column_name[8] = { "a", "b","c", "d", "e", "f", "g", "h" };
 	std::string row_name[8] = { "1", "2", "3", "4", "5", "6", "7", "8" };
 	COLORREF white_field = RGB(255, 255, 178);
@@ -11,5 +12,6 @@ public:
 	bool white_turn = true;
 	General();
 	~General();
+	void InitializeGame(CDC* pDC, RECT cr);
 };
 

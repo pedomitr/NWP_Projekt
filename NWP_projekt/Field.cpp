@@ -3,11 +3,11 @@
 #include "Piece.h"
 
 
-Field::Field(POINT position, bool color, Piece _piece)
+Field::Field(POINT position, bool color, int pieceID)
 {
 	this->position = position;
 	this->color = color;
-	piece = _piece;
+	this->pieceID = pieceID;
 }
 
 

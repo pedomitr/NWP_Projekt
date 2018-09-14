@@ -9,7 +9,7 @@ private:
 	bool color;
 	int pieceID;
 public:
-	Rook(POINT position, bool color, int pieceID));
+	Rook(POINT position, bool color, int pieceID);
 	~Rook();
 	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);

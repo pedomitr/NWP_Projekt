@@ -9,7 +9,7 @@ private:
 	bool color;
 	int pieceID;
 public:
-	Queen(POINT position, bool color, int pieceID));
+	Queen(POINT position, bool color, int pieceID);
 	~Queen();
 	std::vector<POINT> PossibleMoves();
 	void MoveTaken(POINT field);

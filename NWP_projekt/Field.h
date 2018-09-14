@@ -6,7 +6,7 @@ struct Field
 	int  pieceID;
 	
 public:
-	Field(POINT position, bool color, Piece _piece);
+	Field(POINT position, bool color, int pieceID);
 	~Field();
 };
 
