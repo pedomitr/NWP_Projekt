@@ -150,16 +150,13 @@
     <Image Include="res\NWP_projekt.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\figure.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\figurines.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\chess_set.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\normal_chess_set_symbols_igor_k_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\figure.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

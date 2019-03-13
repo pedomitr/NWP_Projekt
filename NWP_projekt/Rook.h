@@ -1,6 +1,6 @@
 #pragma once
 #include "Piece.h"
-struct Rook : 
+struct Rook :
 	public Piece
 {
 private:

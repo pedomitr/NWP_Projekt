@@ -3,7 +3,6 @@
 #include "NWP_projekt.h"
 #include "NWP_projektDoc.h"
 #include "NWP_projektView.h"
-
 #include "Fields.h"
 #include "Pawn.h"
 #include "Rook.h"
@@ -114,6 +113,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	{
 		temp_p.position.x = p.x;
 		temp_p.pieceID = i;
+		//temp_p.loadImage(pDC);
 		w_piece.push_back(temp_p);
 	}
 	p.x = 0;
@@ -199,6 +199,34 @@ void General::PlayMove(CDC * pDC, RECT cr)
 	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
 	SetWindowExtEx(*pDC, 10, 10, 0);
 
-	if()
+	//if()
 	
+}
+
+void General::PlacePiece(CClientDC* pDC,RECT cr, RECT curr_field) {
+
+	SetMapMode(*pDC, MM_ISOTROPIC);
+	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
+	SetWindowExtEx(*pDC, 10, 10, 0);
+
+	CString pngPath = _T("res\\figure.png");
+	CImage pngImage;
+	CBitmap pngBmp;
+	CDC bmDC;
+	CBitmap *pOldbmp;
+	BITMAP  bi;
+
+	CClientDC* dc(pDC);
+
+	pngImage.Load(pngPath);
+
+	pngBmp.Attach(pngImage.Detach());
+
+	bmDC.CreateCompatibleDC(dc);
+
+	pOldbmp = bmDC.SelectObject(&pngBmp);
+	pngBmp.GetBitmap(&bi);
+
+	dc->BitBlt(curr_field.left, curr_field.top, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
+	bmDC.SelectObject(pOldbmp);
 }

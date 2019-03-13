@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -23,7 +23,7 @@
     <ProjectGuid>{3FA7F0D5-24BE-4FF8-BFFA-3D0B3944D040}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
     <RootNamespace>NWPprojekt</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -239,7 +239,6 @@
   <ItemGroup>
     <Image Include="res\chess_set.bmp" />
     <Image Include="res\figure.png" />
-    <Image Include="res\figurines.png" />
     <Image Include="res\normal_chess_set_symbols_igor_k_01.png" />
     <Image Include="res\NWP_projekt.ico" />
     <Image Include="res\NWP_projektDoc.ico" />

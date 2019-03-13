@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Pawn.h"
+#include "Resource.h"
+
 
 
 Pawn::Pawn(POINT _position, bool _color, int _pieceID)
@@ -7,12 +9,14 @@ Pawn::Pawn(POINT _position, bool _color, int _pieceID)
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;
+	void loadImage();
 }
 
 
 Pawn::~Pawn()
 {
 }
+
 
 std::vector<POINT> Pawn::PossibleMoves()
 {

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+Ôªø#include "stdafx.h"
 #include "Fields.h"
 
 
@@ -22,10 +22,13 @@ Fields::~Fields()
 {
 }
 
-//VraÊa redak i stupac odabranog polja na ploËi
+//Vraƒáa redak i stupac odabranog polja na ploƒçi
 POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 {
 	POINT field_position;
+	field_position.x = 0;
+	field_position.y = 0;
+
 	for (int i = 0; i < 8; ++i)
 	{
 		if (point.x >= fields->column[i].x && point.x <= fields->column[i].y)
@@ -46,7 +49,7 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 }
 
 
-TCHAR* Fields::GetFieldName(POINT field_position) 
+void Fields::GetFieldName(POINT field_position, TCHAR* pname) 
 {
 	TCHAR name[4] = _T("");
 	switch (field_position.x) {
@@ -100,10 +103,10 @@ TCHAR* Fields::GetFieldName(POINT field_position)
 	case 7:
 		_tcscat_s(name, 4, _T("8"));
 	}
-	return name;
+	pname = name;
 }
 
-//VraÊa RECT odreenog polja sa ploËe
+//Vra√¶a RECT odre√∞enog polja sa plo√®e
 RECT Fields::GetField(POINT field_position, RECT firstField)
 {
 	RECT rc = { 0,0,0,0 };
