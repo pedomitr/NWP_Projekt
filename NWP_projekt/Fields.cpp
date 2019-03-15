@@ -29,9 +29,11 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 	field_position.x = 0;
 	field_position.y = 0;
 
+
+
 	for (int i = 0; i < 8; ++i)
 	{
-		if (point.x >= fields->column[i].x && point.x <= fields->column[i].y)
+		if (point.x >= fields->column[i].x && point.x <= fields->column[i + 1].y)
 		{
 			field_position.x = i;
 			break;
@@ -39,9 +41,9 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 	}
 	for (int i = 0; i < 8; ++i)
 	{
-		if (point.y >= fields->row[i].x && point.y <= fields->row[i].y)
+		if (point.y >= fields->row[i].x && point.y <= fields->row[i - 1].y)
 		{
-			field_position.y = i;
+			field_position.y = 8 - i;
 			break;
 		}
 	}

@@ -23,16 +23,16 @@ General::~General()
 void General::InitializeGame(CDC* pDC, RECT cr)
 {
 	white_turn = true;
-	HBRUSH brush = CreateSolidBrush(white_field);
+	HBRUSH brush = CreateSolidBrush(black_field);
 	HPEN pen = CreatePen(PS_SOLID, 4, black_field);
 	SetMapMode(*pDC, MM_ISOTROPIC);
+	SetWindowExtEx(*pDC, 9, 9, 0);
 	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
-	SetWindowExtEx(*pDC, 10, 10, 0);
-	RECT border = { 1, 0, 9, 8 };
+	RECT border = { 0, 0, 8, 8 };
 	pDC->Rectangle(&border);
 	FillRect(*pDC, &border, brush);
-	brush = CreateSolidBrush(RGB(51, 25, 0));
-	for (int i = 1; i < 9; ++i) {
+	brush = CreateSolidBrush(white_field);
+	for (int i = 0; i < 8; ++i) {
 		for (int j = i & 1; j < 8; j += 2) {
 			RECT r = { i, j, i + 1, j + 1 };
 			FillRect(*pDC, &r, brush);
@@ -46,7 +46,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 
 
 	RECT markings;
-	int i = 1;
+	int i = 0;
 	int j = 8;
 	SetTextColor(*pDC, black_field);
 	SetBkColor(*pDC, white_piece);
@@ -55,7 +55,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 		markings = { i , j, ++i, j + 1 };
 		DrawText(*pDC, item, -1, &markings, DT_CENTER | DT_SINGLELINE);
 	}
-	i = 9;
+	i = 8;
 	j = 8;
 	for each (TCHAR  *item in number_marks)
 	{
@@ -68,7 +68,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	TCHAR* figure_symbols_pieces[] = { _T("R"), _T("N"),  _T("B"), _T("Q"),  _T("K"),  _T("B"),  _T("N"),  _T("R") };
 	TCHAR* figure_symbols_pawns = _T("P");
 	//Bijele
-	i = 1;
+	i = 0;
 	j = 7;
 	for each (TCHAR  *item in figure_symbols_pieces)
 	{
@@ -76,7 +76,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 		DrawText(*pDC, item, -1, &markings, DT_CENTER | DT_SINGLELINE);
 	}
 
-	for (i = 1, j = 6; i < 9;)
+	for (i = 0, j = 6; i < 8;)
 	{
 		markings = { i , j, ++i, j + 1 };
 		DrawText(*pDC, figure_symbols_pawns, -1, &markings, DT_CENTER | DT_SINGLELINE);
@@ -86,7 +86,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	SetTextColor(*pDC, white_piece);
 	SetBkColor(*pDC, black_piece);
 
-	i = 1;
+	i = 0;
 	j = 0;
 	for each (TCHAR  *item in figure_symbols_pieces)
 	{
@@ -94,7 +94,7 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 		DrawText(*pDC, item, -1, &markings, DT_CENTER | DT_SINGLELINE);
 	}
 
-	for (i = 1, j = 1; i < 9;)
+	for (i = 0, j = 1; i < 8;)
 	{
 		markings = { i , j, ++i, j + 1 };
 		DrawText(*pDC, figure_symbols_pawns, -1, &markings, DT_CENTER | DT_SINGLELINE);
@@ -196,8 +196,8 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 void General::PlayMove(CDC * pDC, RECT cr)
 {
 	SetMapMode(*pDC, MM_ISOTROPIC);
-	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
 	SetWindowExtEx(*pDC, 10, 10, 0);
+	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
 
 	//if()
 	
@@ -206,8 +206,8 @@ void General::PlayMove(CDC * pDC, RECT cr)
 void General::PlacePiece(CClientDC* pDC,RECT cr, RECT curr_field) {
 
 	SetMapMode(*pDC, MM_ISOTROPIC);
-	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
 	SetWindowExtEx(*pDC, 10, 10, 0);
+	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
 
 	CString pngPath = _T("res\\figure.png");
 	CImage pngImage;
@@ -227,6 +227,6 @@ void General::PlacePiece(CClientDC* pDC,RECT cr, RECT curr_field) {
 	pOldbmp = bmDC.SelectObject(&pngBmp);
 	pngBmp.GetBitmap(&bi);
 
-	dc->BitBlt(curr_field.left, curr_field.top, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
+	dc->BitBlt(542, 542, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
 	bmDC.SelectObject(pOldbmp);
 }
