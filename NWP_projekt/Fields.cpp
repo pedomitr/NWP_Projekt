@@ -25,15 +25,11 @@ Fields::~Fields()
 //Vraća redak i stupac odabranog polja na ploči
 POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 {
-	POINT field_position;
-	field_position.x = 0;
-	field_position.y = 0;
-
-
+	POINT field_position = { 0 };
 
 	for (int i = 0; i < 8; ++i)
 	{
-		if (point.x >= fields->column[i].x && point.x <= fields->column[i + 1].y)
+		if (point.x >= fields->column[i].x && point.x < fields->column[i].y)
 		{
 			field_position.x = i;
 			break;
@@ -41,9 +37,9 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 	}
 	for (int i = 0; i < 8; ++i)
 	{
-		if (point.y >= fields->row[i].x && point.y <= fields->row[i - 1].y)
+		if (point.y > fields->row[i].x && point.y <= fields->row[i].y)
 		{
-			field_position.y = 8 - i;
+			field_position.y = i;
 			break;
 		}
 	}
@@ -114,7 +110,7 @@ RECT Fields::GetField(POINT field_position, RECT firstField)
 	RECT rc = { 0,0,0,0 };
 	if (field_position.x > 7 && field_position.y > 7) return rc;
 	rc = { firstField.left + field_position.x, firstField.top - field_position.y, 
-		firstField.right + field_position.x, firstField.bottom - field_position.y};
+		firstField.right + field_position.x + 1, firstField.bottom - field_position.y + 1};
 	return rc;
 }
 

@@ -15,7 +15,7 @@ public:
 	~General();
 	void InitializeGame(CDC* pDC, RECT cr);
 	void PlayMove(CDC* pDC, RECT cr);
-	void PlacePiece(CClientDC* pDC, RECT cr, RECT curr_field);
+	void PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr);
 };
 
 

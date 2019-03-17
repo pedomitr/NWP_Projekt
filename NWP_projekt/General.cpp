@@ -102,9 +102,8 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	}
 
 	//Inicijalizacija figura
-	RECT firstField = { 1, 7, 2, 8 };//za referencu
-	POINT p;
-	p.x = 0; p.y = 1;
+	RECT firstField = { 0, 7, 0, 7 };//za referencu
+	POINT p = { 0 };
 	std::vector<Piece> w_piece;
 	//int i = 0, j = 0;
 	//White
@@ -195,19 +194,22 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 
 void General::PlayMove(CDC * pDC, RECT cr)
 {
-	SetMapMode(*pDC, MM_ISOTROPIC);
-	SetWindowExtEx(*pDC, 10, 10, 0);
-	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
-
-	//if()
+	//
+		//TO DO
+	//
 	
 }
 
-void General::PlacePiece(CClientDC* pDC,RECT cr, RECT curr_field) {
+void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr)
+{
 
-	SetMapMode(*pDC, MM_ISOTROPIC);
-	SetWindowExtEx(*pDC, 10, 10, 0);
-	SetViewportExtEx(*pDC, cr.right, cr.bottom, 0);
+	/*SIZE s;
+	s.cx = cr.bottom * 8 / 9;
+	s.cy = s.cx;*/
+	//SetViewportOrgEx(*pDC, cr.left, cr.top, 0);
+	SetMapMode(*pDC, MM_ANISOTROPIC);
+	SetWindowExtEx(*pDC, 8, 8, 0);
+	SetViewportExtEx(*pDC, curr_field.left, curr_field.top, 0);//put this line on clicked point
 
 	CString pngPath = _T("res\\figure.png");
 	CImage pngImage;
@@ -227,6 +229,6 @@ void General::PlacePiece(CClientDC* pDC,RECT cr, RECT curr_field) {
 	pOldbmp = bmDC.SelectObject(&pngBmp);
 	pngBmp.GetBitmap(&bi);
 
-	dc->BitBlt(542, 542, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
+	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
 	bmDC.SelectObject(pOldbmp);
 }
