@@ -110,7 +110,7 @@ RECT Fields::GetField(POINT field_position, RECT firstField)
 	RECT rc = { 0,0,0,0 };
 	if (field_position.x > 7 && field_position.y > 7) return rc;
 	rc = { firstField.left + field_position.x, firstField.top - field_position.y, 
-		firstField.right + field_position.x + 1, firstField.bottom - field_position.y + 1};
+		firstField.right + field_position.x, firstField.bottom - field_position.y};
 	return rc;
 }
 

@@ -13,9 +13,9 @@ public:
 	bool piece_selected = false;
 	General();
 	~General();
-	void InitializeGame(CDC* pDC, RECT cr);
+	void InitializeGame(CClientDC* pDC, RECT cr);
 	void PlayMove(CDC* pDC, RECT cr);
-	void PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr);
+	void PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, int piece_color, int piece_type);
 };
 
 

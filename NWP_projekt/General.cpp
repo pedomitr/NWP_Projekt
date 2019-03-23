@@ -10,6 +10,7 @@
 #include "Knight.h"
 #include "Queen.h"
 #include "King.h"
+#include "Figure.h"
 
 General::General()
 {
@@ -20,7 +21,7 @@ General::~General()
 {
 }
 
-void General::InitializeGame(CDC* pDC, RECT cr)
+void General::InitializeGame(CClientDC* pDC, RECT cr)
 {
 	white_turn = true;
 	HBRUSH brush = CreateSolidBrush(black_field);
@@ -104,15 +105,17 @@ void General::InitializeGame(CDC* pDC, RECT cr)
 	//Inicijalizacija figura
 	RECT firstField = { 0, 7, 0, 7 };//za referencu
 	POINT p = { 0 };
+	Figure piece1;
 	std::vector<Piece> w_piece;
 	//int i = 0, j = 0;
 	//White
 	Pawn temp_p = { p, true, 0 };
 	for (p.x = 0, p.y = 1, i = 0; p.x < 8; ++i, ++p.x)
 	{
+		RECT curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
 		temp_p.position.x = p.x;
 		temp_p.pieceID = i;
-		//temp_p.loadImage(pDC);
+		PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.pawn);
 		w_piece.push_back(temp_p);
 	}
 	p.x = 0;
@@ -200,7 +203,7 @@ void General::PlayMove(CDC * pDC, RECT cr)
 	
 }
 
-void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr)
+void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, int piece_color, int piece_type)
 {
 
 	/*SIZE s;
@@ -210,7 +213,7 @@ void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr)
 	SetMapMode(*pDC, MM_ANISOTROPIC);
 	SetWindowExtEx(*pDC, 8, 8, 0);
 	SetViewportExtEx(*pDC, curr_field.left, curr_field.top, 0);//put this line on clicked point
-
+	
 	CString pngPath = _T("res\\figure.png");
 	CImage pngImage;
 	CBitmap pngBmp;
@@ -229,6 +232,6 @@ void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr)
 	pOldbmp = bmDC.SelectObject(&pngBmp);
 	pngBmp.GetBitmap(&bi);
 
-	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth / 6, bi.bmHeight / 2, SRCCOPY);
+	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth * 5/ 6, bi.bmHeight / 2, SRCCOPY);
 	bmDC.SelectObject(pOldbmp);
 }

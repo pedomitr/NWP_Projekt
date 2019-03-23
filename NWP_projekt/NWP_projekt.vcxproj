@@ -186,6 +186,7 @@
     <ClInclude Include="Bishop.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Fields.h" />
+    <ClInclude Include="Figure.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="Knight.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Fields.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="Knight.cpp" />
