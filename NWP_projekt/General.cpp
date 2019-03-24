@@ -103,7 +103,7 @@ void General::InitializeGame(CClientDC* pDC, RECT cr)
 	}
 
 	//Inicijalizacija figura
-	RECT firstField = { 0, 7, 0, 7 };//za referencu
+	RECT firstField = { 0, 7, 1, 8 };//za referencu
 	POINT p = { 0 };
 	Figure piece1;
 	std::vector<Piece> w_piece;
@@ -203,14 +203,14 @@ void General::PlayMove(CDC * pDC, RECT cr)
 	
 }
 
-void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, int piece_color, int piece_type)
+void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, double piece_color, double piece_type)
 {
 
 	/*SIZE s;
 	s.cx = cr.bottom * 8 / 9;
 	s.cy = s.cx;*/
 	//SetViewportOrgEx(*pDC, cr.left, cr.top, 0);
-	SetMapMode(*pDC, MM_ANISOTROPIC);
+	SetMapMode(*pDC, MM_ISOTROPIC);
 	SetWindowExtEx(*pDC, 8, 8, 0);
 	SetViewportExtEx(*pDC, curr_field.left, curr_field.top, 0);//put this line on clicked point
 	
@@ -232,6 +232,7 @@ void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, int piece_col
 	pOldbmp = bmDC.SelectObject(&pngBmp);
 	pngBmp.GetBitmap(&bi);
 
-	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2, &bmDC, bi.bmWidth * 5/ 6, bi.bmHeight / 2, SRCCOPY);
+	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2,
+				&bmDC, bi.bmWidth * piece_type, bi.bmHeight * piece_color, SRCCOPY);
 	bmDC.SelectObject(pOldbmp);
 }

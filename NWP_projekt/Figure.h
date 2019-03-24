@@ -4,16 +4,16 @@ class Figure
 	//jedinice za ucitavanje pojedinih figura
 	//white/bijele
 public:
-	int piece_width = 1 / 6;
-	int piece_height = 1 / 2;
-	int white_piece = 0;
-	int black_piece = 1 / 2;
-	int king = 0;
-	int queen = 1 / 6;
-	int bishop = 2 / 6;
-	int knight = 3 / 6;
-	int rook = 4 / 6;
-	int pawn = 5 / 6;
+	double piece_width = (double)1 / 6;
+	double piece_height = (double)1 / 2;
+	double white_piece = 0;
+	double black_piece = (double)1 / 2;
+	double king = 0;
+	double queen = (double)1 / 6;
+	double bishop = (double)2 / 6;
+	double knight = (double)3 / 6;
+	double rook = (double)4 / 6;
+	double pawn = (double)5 / 6;
 public:
 	Figure();
 	~Figure();
