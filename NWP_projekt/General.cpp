@@ -106,90 +106,125 @@ void General::InitializeGame(CClientDC* pDC, RECT cr)
 	RECT firstField = { 0, 7, 1, 8 };//za referencu
 	POINT p = { 0 };
 	Figure piece1;
+	RECT curr_field = { 0 };
 	std::vector<Piece> w_piece;
-	//int i = 0, j = 0;
+	i = 0, j = 0;
 	//White
 	Pawn temp_p = { p, true, 0 };
-	for (p.x = 0, p.y = 1, i = 0; p.x < 8; ++i, ++p.x)
+	for (p.x = 0, p.y = 6, i = 0; p.x < 8; ++i, ++p.x)
 	{
-		RECT curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
 		temp_p.position.x = p.x;
 		temp_p.pieceID = i;
+		curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
 		PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.pawn);
 		w_piece.push_back(temp_p);
 	}
 	p.x = 0;
-	p.y = 0;
+	p.y = 7;
 	Rook temp_r = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.rook);
 	w_piece.push_back(temp_r);
 
 	++p.x;
 	Knight temp_n = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.knight);
 	w_piece.push_back(temp_n);
 
 	++p.x;
 	Bishop temp_b = { p, true, ++i };
-	w_piece.push_back(temp_n);
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.bishop);
+	w_piece.push_back(temp_b);
 
 	++p.x;
 	Queen temp_q = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.queen);
 	w_piece.push_back(temp_q);
 
 	++p.x;
 	King temp_k = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.king);
 	w_piece.push_back(temp_k);
 
 	++p.x;
 	temp_b = { p, true, ++i };
-	w_piece.push_back(temp_n);
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.bishop);
+	w_piece.push_back(temp_b);
 
 	++p.x;
 	temp_n = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.knight);
 	w_piece.push_back(temp_n);
 
 	++p.x;
 	temp_r = { p, true, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.white_piece, piece1.rook);
 	w_piece.push_back(temp_r);
 
 	//Black
 	temp_p = { p, false, ++i };
-	for (p.x = 0, p.y = 6; p.x < 8; ++i, ++p.x)
+	for (p.x = 0, p.y = 1; p.x < 8; ++i, ++p.x)
 	{
 		temp_p.position.x = p.x;
 		temp_p.pieceID = i;
+		curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+		PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.pawn);
 		w_piece.push_back(temp_p);
 	}
 	p.x = 0;
-	p.y = 7;
+	p.y = 0;
 	temp_r = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.rook);
 	w_piece.push_back(temp_r);
 
 	++p.x;
 	temp_n = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.knight);
 	w_piece.push_back(temp_n);
 
 	++p.x;
 	temp_b = { p, false, ++i };
-	w_piece.push_back(temp_n);
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.bishop);
+	w_piece.push_back(temp_b);
 
 	++p.x;
 	temp_q = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.queen);
 	w_piece.push_back(temp_q);
 
 	++p.x;
 	temp_k = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.king);
 	w_piece.push_back(temp_k);
 
 	++p.x;
 	temp_b = { p, false, ++i };
-	w_piece.push_back(temp_n);
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.bishop);
+	w_piece.push_back(temp_b);
 
 	++p.x;
 	temp_n = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.knight);
 	w_piece.push_back(temp_n);
 
 	++p.x;
 	temp_r = { p, false, ++i };
+	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
+	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.rook);
 	w_piece.push_back(temp_r);
 
 
@@ -209,10 +244,10 @@ void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, double piece_
 	/*SIZE s;
 	s.cx = cr.bottom * 8 / 9;
 	s.cy = s.cx;*/
-	//SetViewportOrgEx(*pDC, cr.left, cr.top, 0);
-	SetMapMode(*pDC, MM_ISOTROPIC);
-	SetWindowExtEx(*pDC, 8, 8, 0);
+	//SetViewportOrgEx(*pDC, cr.left - 1, cr.top - 1, 0);
+	SetMapMode(*pDC, MM_ANISOTROPIC);
 	SetViewportExtEx(*pDC, curr_field.left, curr_field.top, 0);//put this line on clicked point
+	SetWindowExtEx(*pDC, 8, 8, 0);
 	
 	CString pngPath = _T("res\\figure.png");
 	CImage pngImage;
@@ -221,18 +256,18 @@ void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, double piece_
 	CBitmap *pOldbmp;
 	BITMAP  bi;
 
-	CClientDC* dc(pDC);
+	//CClientDC* dc(pDC);
 
 	pngImage.Load(pngPath);
 
 	pngBmp.Attach(pngImage.Detach());
 
-	bmDC.CreateCompatibleDC(dc);
+	bmDC.CreateCompatibleDC(pDC);
 
 	pOldbmp = bmDC.SelectObject(&pngBmp);
 	pngBmp.GetBitmap(&bi);
 
-	dc->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2,
+	pDC->BitBlt(cr.bottom * 8 / 9, cr.bottom * 8/ 9, bi.bmWidth / 6, bi.bmHeight / 2,
 				&bmDC, bi.bmWidth * piece_type, bi.bmHeight * piece_color, SRCCOPY);
 	bmDC.SelectObject(pOldbmp);
 }
