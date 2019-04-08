@@ -11,11 +11,12 @@ public:
 	COLORREF black_piece = RGB(0, 0, 0);
 	bool white_turn = true;
 	bool piece_selected = false;
+	RECT current_rect = { 0 };
 	General();
 	~General();
-	void InitializeGame(CClientDC* pDC, RECT cr);
+	void InitializeGame(CDC* pDC, RECT cr);
 	void PlayMove(CDC* pDC, RECT cr);
-	void PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, double piece_color, double piece_type);
+	void PlacePiece(CDC* pDC, RECT curr_field, RECT cr, double piece_color, double piece_type);
 };
 
 

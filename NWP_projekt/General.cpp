@@ -21,7 +21,7 @@ General::~General()
 {
 }
 
-void General::InitializeGame(CClientDC* pDC, RECT cr)
+void General::InitializeGame(CDC* pDC, RECT cr)
 {
 	white_turn = true;
 	HBRUSH brush = CreateSolidBrush(black_field);
@@ -226,8 +226,7 @@ void General::InitializeGame(CClientDC* pDC, RECT cr)
 	curr_field = { p.x, p.y, p.x + 1, p.y + 1 };
 	PlacePiece(pDC, curr_field, cr, piece1.black_piece, piece1.rook);
 	w_piece.push_back(temp_r);
-
-
+	//Kraj Inicijalizacije figura
 }
 
 void General::PlayMove(CDC * pDC, RECT cr)
@@ -238,7 +237,7 @@ void General::PlayMove(CDC * pDC, RECT cr)
 	
 }
 
-void General::PlacePiece(CClientDC* pDC, RECT curr_field, RECT cr, double piece_color, double piece_type)
+void General::PlacePiece(CDC* pDC, RECT curr_field, RECT cr, double piece_color, double piece_type)
 {
 
 	/*SIZE s;
