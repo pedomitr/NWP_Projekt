@@ -9,7 +9,7 @@ public:
 	Fields(RECT first_Field, int hField);
 	~Fields();
 	POINT GetFieldPosition(POINT point, Fields* fields);
-	void GetFieldName(POINT field_position, TCHAR* name);
+	CString GetFieldName(POINT field_position);
 	RECT GetField(POINT field_position, RECT firstField);
 };
 

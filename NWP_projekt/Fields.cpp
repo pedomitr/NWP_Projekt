@@ -25,11 +25,11 @@ Fields::~Fields()
 //Vraća redak i stupac odabranog polja na ploči
 POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 {
-	POINT field_position = { 0 };
+	POINT field_position = { 8, 8 };
 
 	for (int i = 0; i < 8; ++i)
 	{
-		if (point.x >= fields->column[i].x && point.x < fields->column[i].y)
+		if (point.x > fields->column[i].x && point.x <= fields->column[i].y)
 		{
 			field_position.x = i;
 			break;
@@ -47,7 +47,7 @@ POINT Fields::GetFieldPosition(POINT point, Fields* fields)
 }
 
 
-void Fields::GetFieldName(POINT field_position, TCHAR* pname) 
+CString Fields::GetFieldName(POINT field_position) 
 {
 	TCHAR name[4] = _T("");
 	switch (field_position.x) {
@@ -101,16 +101,14 @@ void Fields::GetFieldName(POINT field_position, TCHAR* pname)
 	case 7:
 		_tcscat_s(name, 4, _T("8"));
 	}
-	pname = name;
+
+	return name;
 }
 
 //Vraæa RECT odreðenog polja sa ploèe
 RECT Fields::GetField(POINT field_position, RECT firstField)
 {
-	RECT rc = { 0,0,0,0 };
-	if (field_position.x > 7 && field_position.y > 7) return rc;
-	rc = { firstField.left + field_position.x, firstField.top - field_position.y, 
+	return { firstField.left + field_position.x, firstField.top - field_position.y, 
 		firstField.right + field_position.x, firstField.bottom - field_position.y};
-	return rc;
 }
 
