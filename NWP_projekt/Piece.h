@@ -4,12 +4,13 @@ struct Piece
 {
 protected:
 	std::string name = "C";
-	POINT position = { 0, 0 };
-	bool color = true;
 	int pieceID = 0;
 public:
 	Piece();
 	~Piece();
+	bool color = true;
+	POINT position = { 0, 0 };
+	int GetID() const { return pieceID; }
 	std::vector<Piece> pieces;
 	virtual std::vector<POINT> PossibleMoves();
 	virtual void MoveTaken(POINT field);

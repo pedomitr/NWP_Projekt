@@ -3,7 +3,9 @@
 class PieceBag
 {
 public:
- std::vector<Piece> pieces;
+	Piece current_piece;
+	std::vector<Piece> pieces;
+bool CheckField(POINT field);
 	PieceBag();
 	~PieceBag();
 };
