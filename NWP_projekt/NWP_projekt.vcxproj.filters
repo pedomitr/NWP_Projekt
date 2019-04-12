@@ -78,9 +78,6 @@
     <ClInclude Include="Figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoadPng.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Figure_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -138,9 +135,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Figure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadPng.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Figure_2.cpp">

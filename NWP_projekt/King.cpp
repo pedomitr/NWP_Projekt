@@ -4,6 +4,7 @@
 
 King::King(POINT _position, bool _color, int _pieceID)
 {
+	std::string name = "K";
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;

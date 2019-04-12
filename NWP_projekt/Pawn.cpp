@@ -6,10 +6,10 @@
 
 Pawn::Pawn(POINT _position, bool _color, int _pieceID)
 {
+	std::string name = "p";
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;
-	void loadImage();
 }
 
 

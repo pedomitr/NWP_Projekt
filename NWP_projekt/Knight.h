@@ -4,10 +4,6 @@ struct Knight :
 	public Piece
 {
 private:
-	std::string name = "N";
-	POINT position;
-	bool color;
-	int pieceID;
 public:
 	Knight(POINT position, bool color, int pieceID);
 	~Knight();

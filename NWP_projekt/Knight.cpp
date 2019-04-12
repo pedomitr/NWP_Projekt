@@ -4,6 +4,7 @@
 
 Knight::Knight(POINT _position, bool _color, int _pieceID)
 {
+	std::string name = "N";
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;

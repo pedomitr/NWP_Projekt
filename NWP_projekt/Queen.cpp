@@ -4,6 +4,7 @@
 
 Queen::Queen(POINT _position, bool _color, int _pieceID)
 {
+	std::string name = "Q";
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;
