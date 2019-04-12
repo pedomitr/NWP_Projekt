@@ -81,6 +81,9 @@
     <ClInclude Include="Figure_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PieceBag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NWP_projekt.cpp">
@@ -138,6 +141,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Figure_2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PieceBag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

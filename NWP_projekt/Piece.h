@@ -10,6 +10,7 @@ protected:
 public:
 	Piece();
 	~Piece();
+	std::vector<Piece> pieces;
 	virtual std::vector<POINT> PossibleMoves();
 	virtual void MoveTaken(POINT field);
 };
