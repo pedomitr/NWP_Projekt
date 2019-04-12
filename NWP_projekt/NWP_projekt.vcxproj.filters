@@ -78,6 +78,12 @@
     <ClInclude Include="Figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LoadPng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NWP_projekt.cpp">
@@ -134,6 +140,12 @@
     <ClCompile Include="Figure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LoadPng.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure_2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="NWP_projekt.reg" />
@@ -163,6 +175,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\figure.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\figure23.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

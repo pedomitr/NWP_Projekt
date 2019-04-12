@@ -1,8 +1,7 @@
 #pragma once
 class Figure
 {
-	//jedinice za ucitavanje pojedinih figura
-	//white/bijele
+//jedinice za ucitavanje pojedinih figura
 public:
 	double piece_width = (double)1 / 6;
 	double piece_height = (double)1 / 2;
@@ -14,6 +13,7 @@ public:
 	double knight = (double)3 / 6;
 	double rook = (double)4 / 6;
 	double pawn = (double)5 / 6;
+	COLORREF transparent = RGB(120, 120, 120, 255);
 public:
 	Figure();
 	~Figure();
