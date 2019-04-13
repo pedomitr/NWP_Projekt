@@ -183,50 +183,40 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bishop.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Fields.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Figure_2.h" />
     <ClInclude Include="General.h" />
-    <ClInclude Include="King.h" />
-    <ClInclude Include="Knight.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Moves.h" />
     <ClInclude Include="MovesPage.h" />
     <ClInclude Include="NWP_projekt.h" />
     <ClInclude Include="NWP_projektDoc.h" />
     <ClInclude Include="NWP_projektView.h" />
-    <ClInclude Include="Pawn.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="PieceBag.h" />
     <ClInclude Include="PlayField.h" />
-    <ClInclude Include="Queen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="resource1.h" />
-    <ClInclude Include="Rook.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bishop.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Fields.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Figure_2.cpp" />
     <ClCompile Include="General.cpp" />
-    <ClCompile Include="King.cpp" />
-    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="Moves.cpp" />
     <ClCompile Include="MovesPage.cpp" />
     <ClCompile Include="NWP_projekt.cpp" />
     <ClCompile Include="NWP_projektDoc.cpp" />
     <ClCompile Include="NWP_projektView.cpp" />
-    <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="PieceBag.cpp" />
     <ClCompile Include="PlayField.cpp" />
-    <ClCompile Include="Queen.cpp" />
-    <ClCompile Include="Rook.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

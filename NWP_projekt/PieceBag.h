@@ -3,7 +3,7 @@
 class PieceBag
 {
 public:
-	Piece current_piece;
+	Piece current_piece = { {0, 0}, true, 0 };
 	std::vector<Piece> pieces;
 	void Initialize();
 	bool CheckField(POINT field);

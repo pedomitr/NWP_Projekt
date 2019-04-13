@@ -13,7 +13,7 @@ public:
 	double knight = (double)3 / 6;
 	double rook = (double)4 / 6;
 	double pawn = (double)5 / 6;
-	COLORREF transparent = RGB(120, 120, 120, 255);
+	COLORREF transparent = RGB(120, 120, 120);
 public:
 	Figure();
 	~Figure();

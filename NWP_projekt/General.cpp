@@ -4,12 +4,6 @@
 #include "NWP_projektDoc.h"
 #include "NWP_projektView.h"
 #include "Fields.h"
-#include "Pawn.h"
-#include "Rook.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Queen.h"
-#include "King.h"
 #include "Figure.h"
 
 General::General()

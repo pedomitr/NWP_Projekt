@@ -3,16 +3,15 @@
 struct Piece
 {
 protected:
-	std::string name = "C";
+	std::string name = "Piece";
 	int pieceID = 0;
-public:
-	Piece();
-	~Piece();
 	bool color = true;
+public:
+	Piece(POINT _position, bool _color, int _pieceID);
+	~Piece();
 	POINT position = { 0, 0 };
 	int GetID() const { return pieceID; }
-	std::vector<Piece> pieces;
-	virtual std::vector<POINT> PossibleMoves();
-	virtual void MoveTaken(POINT field);
+	std::string GetName() const { return name; }
+	bool GetColor() const { return color; }
 };
 

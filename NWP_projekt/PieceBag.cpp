@@ -1,12 +1,6 @@
 #include "stdafx.h"
 #include "PieceBag.h"
 #include "Piece.h"
-#include "Pawn.h"
-#include "Rook.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Queen.h"
-#include "King.h"
 
 
 PieceBag::PieceBag()
@@ -43,50 +37,50 @@ void PieceBag::Initialize()
 	//White
 	for (p.y = 1; i < 8; ++i)
 	{
-		Pawn temp_p = { {p.x++, p.y}, true, i };
+		Piece temp_p = { {p.x++, p.y}, true, 6 };
 		pieces.push_back(temp_p);
 	}
 	p.x = 0;
 	p.y = 0;
-	Rook temp_r = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_r);
-	Knight temp_n = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_n);
-	Bishop temp_b = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_b);
-	Queen temp_q = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_q);
-	King temp_k = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_k);
-	temp_b = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_b);
-	temp_n = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_n);
-	temp_r = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_r);
+	Piece temp_p = { {p.x++, p.y}, true, 3};
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 5 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 4 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 2 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 1 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 4 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 5 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 3 };
+	pieces.push_back(temp_p);
 
 	//Black
 	for (p.x = 0, p.y = 6; i < 24; ++i)
 	{
-		Pawn temp_p = { {p.x++, p.y}, false, i };
+		Piece temp_p = { {p.x++, p.y}, false, 6 };
 		pieces.push_back(temp_p);
 	}
 	p.x = 0;
 	p.y = 7;
-	temp_r = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_r);
-	temp_n = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_n);
-	temp_b = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_b);
-	temp_q = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_q);
-	temp_k = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_k);
-	temp_b = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_b);
-	temp_n = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_n);
-	temp_r = { {p.x++, p.y}, true, i++ };
-	pieces.push_back(temp_r);
+	temp_p = { {p.x++, p.y}, true,  3};
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 5 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 4 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 2 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 1 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 4 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 5 };
+	pieces.push_back(temp_p);
+	temp_p = { {p.x++, p.y}, true, 3 };
+	pieces.push_back(temp_p);
 }
