@@ -5,7 +5,8 @@ class PieceBag
 public:
 	Piece current_piece;
 	std::vector<Piece> pieces;
-bool CheckField(POINT field);
+	void Initialize();
+	bool CheckField(POINT field);
 	PieceBag();
 	~PieceBag();
 };
