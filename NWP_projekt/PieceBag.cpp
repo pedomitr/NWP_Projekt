@@ -67,20 +67,20 @@ void PieceBag::Initialize()
 	}
 	p.x = 0;
 	p.y = 7;
-	temp_p = { {p.x++, p.y}, true,  3};
+	temp_p = { {p.x++, p.y}, false,  3};
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 5 };
+	temp_p = { {p.x++, p.y}, false, 5 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 4 };
+	temp_p = { {p.x++, p.y}, false, 4 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 2 };
+	temp_p = { {p.x++, p.y}, false, 2 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 1 };
+	temp_p = { {p.x++, p.y}, false, 1 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 4 };
+	temp_p = { {p.x++, p.y}, false, 4 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 5 };
+	temp_p = { {p.x++, p.y}, false, 5 };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 3 };
+	temp_p = { {p.x++, p.y}, false, 3 };
 	pieces.push_back(temp_p);
 }

@@ -29,6 +29,7 @@ std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color)
 		case 3:
 		{
 			moves = RookMoves(position);
+			break;
 		}
 		case 4:
 		{
@@ -60,50 +61,50 @@ std::vector<POINT> Moves::KingMoves(POINT position)
 	if (position.x > 0 && position.y < 7)
 	{
 		temp.x = position.x - 1;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (position.x > 0 && position.y > 0)
 	{
 		temp.x = position.x - 1;
-		temp.y = position.y - 1;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y < 7)
 	{
 		temp.x = position.x + 1;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y > 0)
 	{
 		temp.x = position.x + 1;
-		temp.y = position.y - 1;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 
 	if (position.x > 0)
 	{
 		temp.x = position.x - 1;
-		temp.y = position.y;
+		temp.y = 7 - position.y;
 		moves.push_back(temp);
 	}
 	if (position.x < 7)
 	{
 		temp.x = position.x + 1;
-		temp.y = position.y;
+		temp.y = 7 - position.y;
 		moves.push_back(temp);
 	}
 	if (position.y < 7)
 	{
 		temp.x = position.x;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (position.y > 0)
 	{
 		temp.x = position.x;
-		temp.y = position.y - 1;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 	return moves;
@@ -117,25 +118,25 @@ std::vector<POINT> Moves::QueenMoves(POINT position)
 	for (i = 0; i < position.x && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x - (i + 1);
-		temp.y = position.y + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < position.x && i < position.y; ++i)
 	{
 		temp.x = position.x - (i + 1);
-		temp.y = position.y - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x + (i + 1);
-		temp.y = position.y + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
 	{
 		temp.x = position.x + (i + 1);
-		temp.y = position.y - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
 		moves.push_back(temp);
 	}
 
@@ -143,15 +144,15 @@ std::vector<POINT> Moves::QueenMoves(POINT position)
 	{
 		if (i == position.x) continue;
 		temp.x = i;
-		temp.y = position.y;
+		temp.y = 7 - position.y;
 		moves.push_back(temp);
 
 	}
 	for (i = 0; i < 8; ++i)
 	{
-		if (i == position.y) continue;
+		if (i == 7 - position.y) continue;
 		temp.x = position.x;
-		temp.y = i;
+		temp.y = 7 - i;
 		moves.push_back(temp);
 	}
 	return moves;
@@ -166,15 +167,14 @@ std::vector<POINT> Moves::RookMoves(POINT position)
 	{
 		if (i == position.x) continue;
 		temp.x = i;
-		temp.y = position.y;
+		temp.y = 7 - position.y;
 		moves.push_back(temp);
-
 	}
 	for (i = 0; i < 8; ++i)
 	{
-		if (i == position.y) continue;
+		if (i == 7 - position.y) continue;
 		temp.x = position.x;
-		temp.y = i;
+		temp.y = 7 - i;
 		moves.push_back(temp);
 	}
 	return moves;
@@ -188,25 +188,25 @@ std::vector<POINT> Moves::BishopMoves(POINT position)
 	for (; i < position.x && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x - (i + 1);
-		temp.y = position.y + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < position.x && i < position.y; ++i)
 	{
 		temp.x = position.x - (i + 1);
-		temp.y = position.y - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x + (i + 1);
-		temp.y = position.y + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
 		moves.push_back(temp);
 	}
 	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
 	{
 		temp.x = position.x + (i + 1);
-		temp.y = position.y - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
 		moves.push_back(temp);
 	}
 	return moves;
@@ -219,49 +219,49 @@ std::vector<POINT> Moves::KnightMoves(POINT position)
 	if (position.x > 0 && position.y < 6)
 	{
 		temp.x = position.x - 1;
-		temp.y = position.y + 2;
+		temp.y = 7 - (position.y + 2);
 		moves.push_back(temp);
 	}
 	if (position.x > 0 && position.y > 1)
 	{
 		temp.x = position.x - 1;
-		temp.y = position.y - 2;
+		temp.y = 7 - (position.y - 2);
 		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y < 6)
 	{
 		temp.x = position.x + 1;
-		temp.y = position.y + 2;
+		temp.y = 7 - (position.y + 2);
 		moves.push_back(temp);
 	}
 	if (position.x < 7 && position.y > 1)
 	{
 		temp.x = position.x + 1;
-		temp.y = position.y - 2;
+		temp.y = 7 - (position.y - 2);
 		moves.push_back(temp);
 	}
 	if (position.x > 1 && position.y < 7)
 	{
 		temp.x = position.x - 2;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (position.x > 1 && position.y > 0)
 	{
 		temp.x = position.x - 2;
-		temp.y = position.y - 1;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 	if (position.x < 6 && position.y < 7)
 	{
 		temp.x = position.x + 2;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (position.x < 6 && position.y > 0)
 	{
 		temp.x = position.x + 2;
-		temp.y = position.y - 1;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 	return moves;
@@ -276,11 +276,11 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color)
 		if (position.y == 1)
 		{
 			temp.x = position.x;
-			temp.y = position.y + 2;
+			temp.y = 7 -( position.y + 2);
 			moves.push_back(temp);
 		}
 		temp.x = position.x;
-		temp.y = position.y + 1;
+		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
 	}
 	if (!color)
@@ -291,8 +291,8 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color)
 			temp.y = position.y - 2;
 			moves.push_back(temp);
 		}
-		temp.x = position.x;
-		temp.y = position.y - 1;
+		temp.x = 7- position.x;
+		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
 	//Dodati ako postoje figure suprotne boje za pojesti i en passan
