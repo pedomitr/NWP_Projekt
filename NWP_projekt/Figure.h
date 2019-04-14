@@ -15,7 +15,8 @@ public:
 	double pawn = (double)5 / 6;
 	COLORREF transparent = RGB(120, 120, 120);
 public:
-
+	double GetByID(int pieceID);
+	double GetColor(bool color);
 	Figure();
 	~Figure();
 };
