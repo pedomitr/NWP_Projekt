@@ -233,7 +233,9 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap2.bmp" />
     <Image Include="res\chess_set.bmp" />
+    <Image Include="res\dot.png" />
     <Image Include="res\figure.png" />
     <Image Include="res\figure23.png" />
     <Image Include="res\normal_chess_set_symbols_igor_k_01.png" />

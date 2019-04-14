@@ -150,5 +150,11 @@
     <Image Include="res\figure23.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\dot.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

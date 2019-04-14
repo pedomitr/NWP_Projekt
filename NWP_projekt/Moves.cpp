@@ -150,7 +150,7 @@ std::vector<POINT> Moves::QueenMoves(POINT position)
 	}
 	for (i = 0; i < 8; ++i)
 	{
-		if (i == 7 - position.y) continue;
+		if (i == position.y) continue;
 		temp.x = position.x;
 		temp.y = 7 - i;
 		moves.push_back(temp);
@@ -172,7 +172,7 @@ std::vector<POINT> Moves::RookMoves(POINT position)
 	}
 	for (i = 0; i < 8; ++i)
 	{
-		if (i == 7 - position.y) continue;
+		if (i == position.y) continue;
 		temp.x = position.x;
 		temp.y = 7 - i;
 		moves.push_back(temp);

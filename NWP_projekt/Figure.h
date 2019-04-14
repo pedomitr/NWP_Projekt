@@ -15,6 +15,7 @@ public:
 	double pawn = (double)5 / 6;
 	COLORREF transparent = RGB(120, 120, 120);
 public:
+
 	Figure();
 	~Figure();
 };
