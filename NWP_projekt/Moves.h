@@ -12,5 +12,6 @@ public:
 	~Moves();
 	std::vector<POINT>moves;
 	std::vector<POINT> PossibleMoves(int pieceID, POINT position, bool color);
+	bool GetFieldColor(POINT p_field);
 };
 

@@ -298,3 +298,15 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color)
 	//Dodati ako postoje figure suprotne boje za pojesti i en passan
 	return moves;
 }
+
+bool Moves::GetFieldColor(POINT p_field)
+{
+	if (p_field.x % 2 == 0)
+	{
+		if (p_field.y % 2 == 0) return false;
+		return true;
+	}
+	else
+		if (p_field.y % 2 == 0) return true;
+	return false;
+}
