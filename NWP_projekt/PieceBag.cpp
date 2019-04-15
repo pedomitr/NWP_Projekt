@@ -37,50 +37,50 @@ void PieceBag::Initialize()
 	//White
 	for (p.y = 1; i < 8; ++i)
 	{
-		Piece temp_p = { {p.x++, p.y}, true, 6 };
+		Piece temp_p = { {p.x++, p.y}, true, 6 , i };
 		pieces.push_back(temp_p);
 	}
 	p.x = 0;
 	p.y = 0;
-	Piece temp_p = { {p.x++, p.y}, true, 3};
+	Piece temp_p = { {p.x++, p.y}, true, 3, i++};
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 5 };
+	temp_p = { {p.x++, p.y}, true, 5 , i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 4 };
+	temp_p = { {p.x++, p.y}, true, 4, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 2 };
+	temp_p = { {p.x++, p.y}, true, 2, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 1 };
+	temp_p = { {p.x++, p.y}, true, 1, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 4 };
+	temp_p = { {p.x++, p.y}, true, 4, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 5 };
+	temp_p = { {p.x++, p.y}, true, 5, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, true, 3 };
+	temp_p = { {p.x++, p.y}, true, 3, i++ };
 	pieces.push_back(temp_p);
 
 	//Black
-	for ( i = 0, p.x = 0, p.y = 6; i < 8; ++i)
+	for ( p.x = 0, p.y = 6; i < 24; ++i)
 	{
-		Piece temp_p = { {p.x++, p.y}, false, 6 };
+		Piece temp_p = { {p.x++, p.y}, false, 6, i };
 		pieces.push_back(temp_p);
 	}
 	p.x = 0;
 	p.y = 7;
-	temp_p = { {p.x++, p.y}, false,  3};
+	temp_p = { {p.x++, p.y}, false, 3, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 5 };
+	temp_p = { {p.x++, p.y}, false, 5, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 4 };
+	temp_p = { {p.x++, p.y}, false, 4, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 2 };
+	temp_p = { {p.x++, p.y}, false, 2, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 1 };
+	temp_p = { {p.x++, p.y}, false, 1, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 4 };
+	temp_p = { {p.x++, p.y}, false, 4, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 5 };
+	temp_p = { {p.x++, p.y}, false, 5, i++ };
 	pieces.push_back(temp_p);
-	temp_p = { {p.x++, p.y}, false, 3 };
+	temp_p = { {p.x++, p.y}, false, 3, i++ };
 	pieces.push_back(temp_p);
 }

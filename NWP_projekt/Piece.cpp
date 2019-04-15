@@ -3,12 +3,12 @@
 
 
 
-Piece::Piece(POINT _position, bool _color, int _pieceID)
+Piece::Piece(POINT _position, bool _color, int _pieceID, int _vectorID)
 {
 	position = _position;
 	color = _color;
 	pieceID = _pieceID;
-
+	vectorID = _vectorID;
 	switch (_pieceID)
 	{
 	case 1:
