@@ -60,7 +60,7 @@ void PieceBag::Initialize()
 	pieces.push_back(temp_p);
 
 	//Black
-	for (p.x = 0, p.y = 6; i < 24; ++i)
+	for ( i = 0, p.x = 0, p.y = 6; i < 8; ++i)
 	{
 		Piece temp_p = { {p.x++, p.y}, false, 6 };
 		pieces.push_back(temp_p);
