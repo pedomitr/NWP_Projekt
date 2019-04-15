@@ -288,10 +288,10 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color)
 		if (position.y == 6)
 		{
 			temp.x = position.x;
-			temp.y = position.y - 2;
+			temp.y = 7 -  (position.y - 2);
 			moves.push_back(temp);
 		}
-		temp.x = 7- position.x;
+		temp.x = position.x;
 		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
