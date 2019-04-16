@@ -2,7 +2,7 @@
 
 struct Piece
 {
-protected:
+private:
 	std::string name = "Piece";
 	int pieceID = 0;
 	int vectorID = 0;
@@ -10,6 +10,7 @@ protected:
 public:
 	Piece(POINT _position, bool _color, int _pieceID, int vectorID);
 	~Piece();
+	bool in_play = true;
 	POINT position = { 0, 0 };
 	int GetID() const { return pieceID; }
 	int GetVectorID() const { return vectorID; }

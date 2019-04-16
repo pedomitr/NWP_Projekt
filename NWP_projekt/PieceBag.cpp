@@ -19,7 +19,7 @@ bool PieceBag::CheckField(POINT field)
 	while(i < pieces.size() )
 	{
 		p = pieces.at(i).position;
-		if (p.x == field.x && p.y == field.y)
+		if (pieces.at(i).in_play && p.x == field.x && p.y == field.y)
 		{
 			current_piece = pieces.at(i);
 			return true;
@@ -84,3 +84,4 @@ void PieceBag::Initialize()
 	temp_p = { {p.x++, p.y}, false, 3, i++ };
 	pieces.push_back(temp_p);
 }
+
