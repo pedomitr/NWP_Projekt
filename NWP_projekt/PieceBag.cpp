@@ -30,6 +30,18 @@ bool PieceBag::CheckField(POINT field)
 
 }
 
+void PieceBag::CheckPath()
+{
+	//Pseudokod
+	/*
+		CheckField();
+		if( p_move == bag.cuurent_piece.position)
+			if(bag.current_piece.color == last_piece.color)
+				moves.pushback(p_move)
+				break;
+	*/
+}
+
 void PieceBag::Initialize() 
 {
 	POINT p = { 0,0 };

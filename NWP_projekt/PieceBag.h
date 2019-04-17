@@ -8,6 +8,7 @@ public:
 	std::vector<Piece> pieces;
 	void Initialize();
 	bool CheckField(POINT field);
+	void CheckPath();
 	PieceBag();
 	~PieceBag();
 };
