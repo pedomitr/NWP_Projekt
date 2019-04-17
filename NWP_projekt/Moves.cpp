@@ -599,6 +599,23 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag bag)
 				if (!bag.CheckField(curr_p)) moves.push_back(temp);
 			}
 		}
+		if (position.y < 7) 
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				if(bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				if (bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+		}
 	}
 	if (!color)
 	{
@@ -615,9 +632,26 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag bag)
 				curr_p = { temp.x, 7 - temp.y };
 				if (!bag.CheckField(curr_p)) moves.push_back(temp);
 			}
-		}		
+		}
+		if (position.y > 0)
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y +-1);
+				curr_p = { temp.x, 7 - temp.y };
+				if (bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y - 1);
+				curr_p = { temp.x, 7 - temp.y };
+				if (bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+		}
 	}
-	//Dodati ako postoje figure suprotne boje za pojesti i en passan
+	//Dodati en passan
 	return moves;
 }
 
