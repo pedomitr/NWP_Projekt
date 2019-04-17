@@ -641,7 +641,6 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				if (!bag->CheckField(curr_p))
 				{
 					moves.push_back(temp);
-					//bolje narihtati en_passant x i prilagoditi sve
 					bag->en_passant_x = { curr_p.x, curr_p.y - 1 };
 					bag->en_passant_ID = bag->last_piece.GetVectorID();
 					bag->en_passant_color = bag->last_piece.GetColor();
