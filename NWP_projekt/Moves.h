@@ -13,8 +13,6 @@ public:
 	~Moves();
 	std::vector<POINT>moves;
 	std::vector<POINT> PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
-	//prije pushbacka svakog mogućeg poteza provjeriti da li se na putu nalazi figura i koje boje
-	void PathBlocked(POINT position);
 	bool GetFieldColor(POINT p_field);
 };
 
