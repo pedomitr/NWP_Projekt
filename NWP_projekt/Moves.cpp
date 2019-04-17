@@ -225,11 +225,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag bag)
 		else
 			moves.push_back(temp);
 	}
-
-	for (i = 0; i < 8; ++i)
+	for (i = 0; i < position.x; ++i)
 	{
-		if (i == position.x) continue;
-		temp.x = i;
+		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p))
@@ -243,13 +241,45 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag bag)
 		}
 		else
 			moves.push_back(temp);
-
 	}
-	for (i = 0; i < 8; ++i)
+	for (i = 0; i < 7 - position.x; ++i)
 	{
-		if (i == position.y) continue;
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			if (bag.current_piece.GetColor() != color)
+			{
+				moves.push_back(temp);
+				break;
+			}
+			else break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.y; ++i)
+	{
 		temp.x = position.x;
-		temp.y = 7 - i;
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			if (bag.current_piece.GetColor() != color)
+			{
+				moves.push_back(temp);
+				break;
+			}
+			else break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < 7 - position.y; ++i)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p))
 		{
@@ -272,10 +302,10 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag bag)
 	POINT temp;
 	POINT curr_p;
 	int i = 0;
-	for (i = 0; i < position.x && i < (7 - position.y); ++i)
+	for (i = 0; i < position.x; ++i)
 	{
 		temp.x = position.x - (i + 1);
-		temp.y = 7 - (position.y + (i + 1));
+		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p))
 		{
@@ -284,13 +314,31 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag bag)
 				moves.push_back(temp);
 				break;
 			}
-			else break;		
-		}else
+			else break;
+		}
+		else
 			moves.push_back(temp);
 	}
-	for (i = 0; i < position.x && i < position.y; ++i)
+	for (i = 0; i < 7 - position.x; ++i)
 	{
-		temp.x = position.x - (i + 1);
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			if (bag.current_piece.GetColor() != color)
+			{
+				moves.push_back(temp);
+				break;
+			}
+			else break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.y; ++i)
+	{
+		temp.x = position.x;
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p))
@@ -305,27 +353,10 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag bag)
 		else
 			moves.push_back(temp);
 	}
-	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
+	for (i = 0; i < 7 - position.y; ++i)
 	{
-		temp.x = position.x + (i + 1);
+		temp.x = position.x;
 		temp.y = 7 - (position.y + (i + 1));
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p))
-		{
-			if (bag.current_piece.GetColor() != color)
-			{
-				moves.push_back(temp);
-				break;
-			}
-			else break;
-		}
-		else
-			moves.push_back(temp);
-	}
-	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p))
 		{
@@ -553,43 +584,38 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag bag)
 	POINT temp;
 	POINT curr_p;
 	if (color)
-	{
-		if (position.y == 1)
-		{
-			temp.x = position.x;
-			temp.y = 7 -( position.y + 2);
-			curr_p = { temp.x, 7 - temp.y };
-			curr_p = { temp.x, 7 - temp.y };
-			if (bag.CheckField(curr_p));
-			else
-				moves.push_back(temp);
-		}
+	{	
 		temp.x = position.x;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p));
-		else
+		if (!bag.CheckField(curr_p))
+		{
 			moves.push_back(temp);
+			if (position.y == 1)
+			{
+				temp.x = position.x;
+				temp.y = 7 - (position.y + 2);
+				curr_p = { temp.x, 7 - temp.y };
+				if (!bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+		}
 	}
 	if (!color)
 	{
-		if (position.y == 6)
-		{
-			temp.x = position.x;
-			temp.y = 7 -  (position.y - 2);
-			curr_p = { temp.x, 7 - temp.y };
-			curr_p = { temp.x, 7 - temp.y };
-			if (bag.CheckField(curr_p));
-			else
-				moves.push_back(temp);
-		}
 		temp.x = position.x;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p));
-		else
+		if (!bag.CheckField(curr_p))
+		{
 			moves.push_back(temp);
+			if (position.y == 6)
+			{
+				temp.x = position.x;
+				temp.y = 7 -  (position.y - 2);
+				curr_p = { temp.x, 7 - temp.y };
+				if (!bag.CheckField(curr_p)) moves.push_back(temp);
+			}
+		}		
 	}
 	//Dodati ako postoje figure suprotne boje za pojesti i en passan
 	return moves;
