@@ -599,9 +599,9 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				if (!bag->CheckField(curr_p))
 				{
 					moves.push_back(temp);
-					/*bag->en_passant_x = { curr_p.x, curr_p.y + 1 };
+					bag->en_passant_x = { curr_p.x, curr_p.y + 1 };
 					bag->en_passant_ID = bag->last_piece.GetVectorID();
-					bag->en_passant_color = bag->last_piece.GetColor();*/
+					bag->en_passant_color = bag->last_piece.GetColor();
 				}
 			}
 		}
@@ -612,8 +612,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x - 1;
 				temp.y = 7 - (position.y + 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor())) 
-					//|| (bag->en_passant && bag->last_piece.position.x == bag->en_passant_x.x && bag->last_piece.position.y == bag->en_passant_x.y))
+				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor()) || bag->en_passant)
 					moves.push_back(temp);				
 			}
 			if (position.x < 7)
@@ -621,8 +620,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x + 1;
 				temp.y = 7 - (position.y + 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor()))
-					//|| (bag->en_passant && bag->last_piece.position.x == bag->en_passant_x.x && bag->last_piece.position.y == bag->en_passant_x.y))
+				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor()) || bag->en_passant)
 					moves.push_back(temp);
 			}
 		}
@@ -643,9 +641,9 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				if (!bag->CheckField(curr_p))
 				{
 					moves.push_back(temp);
-					/*bag->en_passant_x = { curr_p.x, curr_p.y + 1 };
+					bag->en_passant_x = { curr_p.x, curr_p.y - 1 };
 					bag->en_passant_ID = bag->last_piece.GetVectorID();
-					bag->en_passant_color = bag->last_piece.GetColor();*/
+					bag->en_passant_color = bag->last_piece.GetColor();
 				}
 			}
 		}
@@ -654,10 +652,9 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 			if (position.x > 0)
 			{
 				temp.x = position.x - 1;
-				temp.y = 7 - (position.y);
+				temp.y = 7 - (position.y +-1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor()))
-					//|| (bag->en_passant && bag->last_piece.position.x == bag->en_passant_x.x && bag->last_piece.position.y == bag->en_passant_x.y))
+				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor()) || bag->en_passant)
 					moves.push_back(temp);
 			}
 			if (position.x < 7)
@@ -665,8 +662,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x + 1;
 				temp.y = 7 - (position.y - 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor())) 
-					//|| (bag->en_passant && bag->last_piece.position.x == bag->en_passant_x.x && bag->last_piece.position.y == bag->en_passant_x.y))
+				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor()) || bag->en_passant)
 					moves.push_back(temp);
 			}
 		}
