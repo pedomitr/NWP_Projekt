@@ -12,7 +12,7 @@ Moves::~Moves()
 
 
 
-std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	switch (pieceID)
@@ -55,7 +55,7 @@ std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color,
 	return moves;
 }
 
-std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -65,7 +65,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}else
 			moves.push_back(temp);
@@ -76,7 +76,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -87,7 +87,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 1;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -98,7 +98,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 1;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -110,7 +110,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -121,7 +121,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 1;
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -132,7 +132,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -143,7 +143,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p) && bag->current_piece.GetColor() == color)
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
 		}
 		else
@@ -152,7 +152,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag* bag)
 	return moves;
 }
 
-std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -163,9 +163,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -179,9 +179,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -196,9 +196,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -213,9 +213,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -230,9 +230,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -247,9 +247,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -264,9 +264,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -281,9 +281,9 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -296,7 +296,7 @@ std::vector<POINT> Moves::QueenMoves(POINT position, bool color, PieceBag* bag)
 	return moves;
 }
 
-std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -307,9 +307,9 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -324,9 +324,9 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - position.y;
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -341,9 +341,9 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -358,9 +358,9 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -373,7 +373,7 @@ std::vector<POINT> Moves::RookMoves(POINT position, bool color, PieceBag* bag)
 	return moves;
 }
 
-std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -384,9 +384,9 @@ std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -401,9 +401,9 @@ std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -418,9 +418,9 @@ std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -435,9 +435,9 @@ std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 				break;
@@ -450,7 +450,7 @@ std::vector<POINT> Moves::BishopMoves(POINT position, bool color, PieceBag* bag)
 	return moves;
 }
 
-std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -460,9 +460,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - (position.y + 2);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -475,9 +475,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - (position.y - 2);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -490,9 +490,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 1;
 		temp.y = 7 - (position.y + 2);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -505,9 +505,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 1;
 		temp.y = 7 - (position.y - 2);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -520,9 +520,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 2;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -535,9 +535,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x - 2;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -550,9 +550,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 2;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -565,9 +565,9 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x + 2;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (bag->CheckField(curr_p))
+		if (bag.CheckField(curr_p))
 		{
-			if (bag->current_piece.GetColor() != color)
+			if (bag.current_piece.GetColor() != color)
 			{
 				moves.push_back(temp);
 			}
@@ -578,7 +578,7 @@ std::vector<POINT> Moves::KnightMoves(POINT position, bool color, PieceBag* bag)
 	return moves;
 }
 
-std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
+std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -588,7 +588,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y + 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (!bag->CheckField(curr_p))
+		if (!bag.CheckField(curr_p))
 		{
 			moves.push_back(temp);
 			if (position.y == 1)
@@ -596,12 +596,12 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x;
 				temp.y = 7 - (position.y + 2);
 				curr_p = { temp.x, 7 - temp.y };
-				if (!bag->CheckField(curr_p))
+				if (!bag.CheckField(curr_p))
 				{
 					moves.push_back(temp);
-					bag->en_passant_x = { curr_p.x, curr_p.y + 1 };
-					bag->en_passant_ID = bag->last_piece.GetVectorID();
-					bag->en_passant_color = bag->last_piece.GetColor();
+					bag.en_passant_x = position;
+					bag.en_passant_ID = bag.last_piece.GetVectorID();
+					bag.en_passant_color = bag.last_piece.GetColor();
 				}
 			}
 		}
@@ -612,7 +612,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x - 1;
 				temp.y = 7 - (position.y + 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor()) || bag->en_passant)
+				if (bag.CheckField(curr_p) && !bag.current_piece.GetColor() || (position.y == 4 && bag.en_passant && bag.en_passant_color != color && bag.en_passant_x.x == curr_p.x))
 					moves.push_back(temp);				
 			}
 			if (position.x < 7)
@@ -620,7 +620,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x + 1;
 				temp.y = 7 - (position.y + 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && !bag->current_piece.GetColor()) || bag->en_passant)
+				if (bag.CheckField(curr_p) && !bag.current_piece.GetColor() || (position.y == 4 && bag.en_passant && !bag.en_passant_color != color && bag.en_passant_x.x == curr_p.x))
 					moves.push_back(temp);
 			}
 		}
@@ -630,7 +630,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 		temp.x = position.x;
 		temp.y = 7 - (position.y - 1);
 		curr_p = { temp.x, 7 - temp.y };
-		if (!bag->CheckField(curr_p))
+		if (!bag.CheckField(curr_p))
 		{
 			moves.push_back(temp);
 			if (position.y == 6)
@@ -638,13 +638,12 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x;
 				temp.y = 7 -  (position.y - 2);
 				curr_p = { temp.x, 7 - temp.y };
-				if (!bag->CheckField(curr_p))
+				if (!bag.CheckField(curr_p))
 				{
 					moves.push_back(temp);
-					//bolje narihtati en_passant x i prilagoditi sve
-					bag->en_passant_x = { curr_p.x, curr_p.y - 1 };
-					bag->en_passant_ID = bag->last_piece.GetVectorID();
-					bag->en_passant_color = bag->last_piece.GetColor();
+					bag.en_passant_x = position;
+					bag.en_passant_ID = bag.last_piece.GetVectorID();
+					bag.en_passant_color = bag.last_piece.GetColor();
 				}
 			}
 		}
@@ -655,7 +654,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x - 1;
 				temp.y = 7 - (position.y +-1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor()) || bag->en_passant)
+				if (bag.CheckField(curr_p) && bag.current_piece.GetColor() || (temp.y == 3 && bag.en_passant && bag.en_passant_color != color && bag.en_passant_x.x == curr_p.x))
 					moves.push_back(temp);
 			}
 			if (position.x < 7)
@@ -663,7 +662,7 @@ std::vector<POINT> Moves::PawnMoves(POINT position, bool color, PieceBag* bag)
 				temp.x = position.x + 1;
 				temp.y = 7 - (position.y - 1);
 				curr_p = { temp.x, 7 - temp.y };
-				if ((bag->CheckField(curr_p) && bag->current_piece.GetColor()) || bag->en_passant)
+				if (bag.CheckField(curr_p) && bag.current_piece.GetColor() || (temp.y == 3 && bag.en_passant && bag.en_passant_color != color && bag.en_passant_x.x == curr_p.x))
 					moves.push_back(temp);
 			}
 		}
