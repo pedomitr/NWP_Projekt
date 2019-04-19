@@ -9,6 +9,10 @@ class Moves
 	std::vector<POINT> KnightMoves(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> PawnMoves(POINT position, bool color, PieceBag bag);
 public:
+	bool en_passant = false;
+	int en_passant_ID = 0;
+	POINT en_passant_x = { 0, 0 };
+	bool en_passant_color = true;
 	Moves();
 	~Moves();
 	std::vector<POINT>moves;
