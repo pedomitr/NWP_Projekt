@@ -13,6 +13,7 @@ public:
 	int en_passant_ID = 0;
 	POINT en_passant_x = { 0, 0 };
 	bool en_passant_color = true;
+	bool en_passant_possible = false;
 	Moves();
 	~Moves();
 	std::vector<POINT>moves;
