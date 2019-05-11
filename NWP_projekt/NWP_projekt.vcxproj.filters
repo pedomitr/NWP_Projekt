@@ -54,9 +54,6 @@
     <ClInclude Include="Field.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="General.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -99,9 +96,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="General.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Figure.cpp">
