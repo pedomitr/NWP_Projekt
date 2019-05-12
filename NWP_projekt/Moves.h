@@ -14,6 +14,7 @@ public:
 	POINT en_passant_x = { 0, 0 };
 	bool en_passant_color = true;
 	bool en_passant_possible = false;
+	std::vector<POINT> unblocked_moves;
 	Moves();
 	~Moves();
 	std::vector<POINT>moves;
