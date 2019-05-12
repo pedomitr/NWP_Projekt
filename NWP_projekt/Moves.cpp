@@ -727,5 +727,21 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 	return false;
 }
 
+bool Moves::Under_Check(PieceBag bag, POINT field_position, bool white_turn)
+{
+	for each(Piece piece in bag.pieces)
+	{
+		if (piece.GetColor() != white_turn)
+		{
+			moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+			for each (POINT piece_move in moves)
+			{
+				if (piece_move.x == field_position.x && 7 - piece_move.y == field_position.y) return true;
+			}
+		}
+	}
+	return false;
+}
+
 
 bool operator==(const POINT &a, const POINT &b) { return (a.x == b.x && a.y == b.y); }
