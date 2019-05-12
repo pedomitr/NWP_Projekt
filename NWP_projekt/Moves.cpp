@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Moves.h"
+#include <algorithm>
 
 Moves::Moves()
 {
@@ -67,7 +68,8 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 		curr_p = { temp.x, 7 - temp.y };
 		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
 		{
-		}else
+		}
+		else
 			moves.push_back(temp);
 
 	}
@@ -148,6 +150,36 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 		}
 		else
 			moves.push_back(temp);
+	}
+	//polja pod šahom
+	std::vector<POINT> blocked_move;
+	for each (Piece piece in bag.pieces)
+	{
+		if (piece.GetColor() != color)
+		{
+			if (!moves.empty())
+			{
+				blocked_move.clear();
+				blocked_move = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+				for each (POINT piece_move in blocked_move)
+				{
+					for each (POINT king_move in moves)
+					{
+						if (king_move == piece_move)
+						{
+							moves.erase(std::remove(moves.begin(), moves.end(), king_move), moves.end());//ERASE-REMOVE IDIOM
+							break;
+						}
+					}
+					if (moves.empty()) break;
+				}
+			}
+		}
+	}
+	for each (POINT king_move in moves)
+	{
+		king_moves.clear();
+		king_moves.push_back(king_move);
 	}
 	return moves;
 }
@@ -681,3 +713,19 @@ bool Moves::GetFieldColor(POINT p_field)
 		if (p_field.y % 2 == 0) return true;
 	return false;
 }
+
+bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
+{
+	moves = PossibleMoves(bag.current_piece.GetID(), field_position, bag.current_piece.GetColor(), bag);
+	for each (POINT item in moves)
+	{
+		if (white_turn && item.x == black_king_position.x && 7 - item.y == black_king_position.y)
+			return true;
+		else if (!white_turn && item.x == white_king_position.x && 7 - item.y == white_king_position.y)
+			return true;
+	}
+	return false;
+}
+
+
+bool operator==(const POINT &a, const POINT &b) { return (a.x == b.x && a.y == b.y); }
