@@ -743,6 +743,8 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn)
 				if (piece_move.x == black_king_position.x && 7 - piece_move.y == black_king_position.y) return true;
 			}
 		}
+		if (white_turn && piece.GetVectorID() == 31) break;
+		if (!white_turn && piece.GetVectorID() > 15) break;
 	}
 	return false;
 }
