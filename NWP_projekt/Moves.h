@@ -23,7 +23,7 @@ public:
 	std::vector<POINT> king_moves;
 	bool GetFieldColor(POINT p_field);
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
-	bool Moves::Under_Check(PieceBag bag, POINT field_position, bool white_turn);
+	bool Moves::Under_Check(PieceBag bag, bool white_turn);
 	friend bool operator==(const POINT &a, const POINT &b);
 };
 

@@ -153,9 +153,9 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 	}
 	//polja pod šahom
 	std::vector<POINT> blocked_move;
-	for each (Piece piece in bag.pieces)
+	for each (Piece piece in bag.pieces)//vrti se beskonacno
 	{
-		if (piece.GetColor() != color)
+		if (piece.GetColor() != color && piece.in_play)
 		{
 			if (!moves.empty())
 			{
@@ -175,10 +175,12 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 				}
 			}
 		}
+		if (color && piece.GetVectorID() == 31) break;
+		if (!color && piece.GetVectorID() > 15) break;
 	}
+	king_moves.clear();
 	for each (POINT king_move in moves)
 	{
-		king_moves.clear();
 		king_moves.push_back(king_move);
 	}
 	return moves;
@@ -727,16 +729,18 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 	return false;
 }
 
-bool Moves::Under_Check(PieceBag bag, POINT field_position, bool white_turn)
+bool Moves::Under_Check(PieceBag bag, bool white_turn)
 {
 	for each(Piece piece in bag.pieces)
 	{
-		if (piece.GetColor() != white_turn)
+		if (piece.GetColor() != white_turn && piece.in_play)
 		{
+			moves.clear();
 			moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
 			for each (POINT piece_move in moves)
 			{
-				if (piece_move.x == field_position.x && 7 - piece_move.y == field_position.y) return true;
+				if (piece_move.x == white_king_position.x && 7 - piece_move.y == white_king_position.y) return true;
+				if (piece_move.x == black_king_position.x && 7 - piece_move.y == black_king_position.y) return true;
 			}
 		}
 	}
