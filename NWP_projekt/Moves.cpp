@@ -785,7 +785,10 @@ bool Moves::GetFieldColor(POINT p_field)
 
 bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 {
-	moves = PossibleMoves(bag.current_piece.GetID(), field_position, bag.current_piece.GetColor(), bag);
+	if (bag.current_piece.GetID() == 6)
+		moves = PawnThreat(field_position, bag.last_piece.GetColor(), bag);
+	else 
+		moves = PossibleMoves(bag.last_piece.GetID(), field_position, bag.last_piece.GetColor(), bag);
 	for each (POINT item in moves)
 	{
 		if (white_turn && item.x == black_king_position.x && 7 - item.y == black_king_position.y)
@@ -803,7 +806,18 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn)
 		if (piece.GetColor() != white_turn && piece.in_play)
 		{
 			moves.clear();
-			moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+			if (piece.GetID() == 1)
+			{
+				if (white_turn) moves = TheKing(black_king_position, false, bag);
+				else moves = TheKing(white_king_position, true, bag);
+			}
+			else if (piece.GetID() == 6)
+			{
+				if (white_turn) moves = PawnThreat(piece.position, false, bag);
+				else moves = PawnThreat(piece.position, true, bag);
+			}
+			else moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+
 			for each (POINT piece_move in moves)
 			{
 				if (piece_move.x == white_king_position.x && 7 - piece_move.y == white_king_position.y) return true;
