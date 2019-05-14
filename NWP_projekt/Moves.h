@@ -2,6 +2,8 @@
 #include "Piecebag.h"
 class Moves
 {
+	std::vector<POINT> PawnThreat(POINT position, bool color, PieceBag bag);
+	std::vector<POINT> TheKing(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> KingMoves(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> QueenMoves(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> RookMoves(POINT position, bool color, PieceBag bag);

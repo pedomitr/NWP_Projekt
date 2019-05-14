@@ -56,7 +56,8 @@ std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color,
 	return moves;
 }
 
-std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
+
+std::vector<POINT> Moves::TheKing(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	POINT temp;
@@ -151,16 +152,82 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 		else
 			moves.push_back(temp);
 	}
+	return moves;
+}
+
+std::vector<POINT> Moves::PawnThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	if (color)
+	{		
+		if (position.y < 7)
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+		}
+	}
+	if (!color)
+	{		
+		if (position.y > 0)
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y - 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y - 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+		}
+	}
+	return moves;
+}
+
+
+std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	moves = TheKing(position, color, bag);
 	//polja pod šahom
 	std::vector<POINT> blocked_move;
 	for each (Piece piece in bag.pieces)//vrti se beskonacno
 	{
-		if (piece.GetColor() != color && piece.in_play)
+		if (piece.GetColor() != color && piece.in_play && piece.GetID())//kralja druge boje provjeriti indirektno
 		{
 			if (!moves.empty())
 			{
 				blocked_move.clear();
-				blocked_move = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+				if (piece.GetID() == 1) 
+				{
+					if (color) blocked_move = TheKing(black_king_position, false, bag);
+					else blocked_move = TheKing(white_king_position, true, bag);
+				}
+				else if (piece.GetID() == 6)
+				{
+					if (color) blocked_move = PawnThreat(piece.position, false, bag);
+					else blocked_move = PawnThreat(piece.position, true, bag);
+				}
+				else blocked_move = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
 				for each (POINT piece_move in blocked_move)
 				{
 					for each (POINT king_move in moves)
@@ -175,8 +242,8 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 				}
 			}
 		}
-		/*if (color && piece.GetVectorID() == 31) break;
-		if (!color && piece.GetVectorID() > 15) break;*/
+		//if (color && piece.GetVectorID() == 31) break;
+		//if (!color && piece.GetVectorID() > 15) break;
 	}
 	king_moves.clear();
 	for each (POINT king_move in moves)
