@@ -13,8 +13,10 @@ public:
 	bool in_play = true;
 	POINT position = { 0, 0 };
 	int GetID() const { return pieceID; }
+	void SetID(int ID) { pieceID = ID; }
 	int GetVectorID() const { return vectorID; }
 	std::string GetName() const { return name; }
+	void SetName(std::string _name) { name = _name; }
 	bool GetColor() const { return color; }
 };
 

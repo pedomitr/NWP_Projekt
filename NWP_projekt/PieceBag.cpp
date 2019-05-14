@@ -86,3 +86,39 @@ void PieceBag::Initialize()
 	pieces.push_back(temp_p);
 }
 
+void PieceBag::Promote(int newID, PieceBag* bag)
+{
+	int vectorID = bag->last_piece.GetVectorID();
+	switch (newID)
+	{
+		case 1:
+		{
+			bag->pieces.at(vectorID).SetID(5);
+			bag->pieces.at(vectorID).SetName("N");
+			break;
+		}
+		case 2:
+		{
+			bag->pieces.at(vectorID).SetID(4);
+			bag->last_piece.SetName("B");
+			break;
+		}
+		case 3:
+		{
+			bag->pieces.at(vectorID).SetID(3);
+			bag->pieces.at(vectorID).SetName("R");
+			break;
+		}
+		case 4:
+		{
+			bag->pieces.at(vectorID).SetID(2);
+			bag->pieces.at(vectorID).SetName("Q");
+			break;
+		}
+		default:
+			bag->pieces.at(vectorID).SetID(6);
+			bag->pieces.at(vectorID).SetName("p");
+	}
+	bag->last_piece = bag->pieces.at(vectorID);
+}
+
