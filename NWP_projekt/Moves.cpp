@@ -56,158 +56,56 @@ std::vector<POINT> Moves::PossibleMoves(int pieceID, POINT position, bool color,
 	return moves;
 }
 
-
-std::vector<POINT> Moves::TheKing(POINT position, bool color, PieceBag bag)
+std::vector<POINT> Moves::PossibleThreat(int pieceID, POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
-	POINT temp;
-	POINT curr_p;
-	if (position.x > 0 && position.y < 7)
+	switch (pieceID)
 	{
-		temp.x = position.x - 1;
-		temp.y = 7 - (position.y + 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
+	case 1:
+	{
+		moves = KingThreat(position, color, bag);
+		break;
+	}
+	case 2:
+	{
+		moves = QueenThreat(position, color, bag);
+		break;
+	}
+	case 3:
+	{
+		moves = RookThreat(position, color, bag);
+		break;
+	}
+	case 4:
+	{
+		moves = BishopThreat(position, color, bag);
+		break;
+	}
+	case 5:
+	{
+		moves = KnightThreat(position, color, bag);
+		break;
+	}
+	case 6:
+	{
+		moves = PawnThreat(position, color, bag);
+		break;
+	}
+	default:
+	{
 
 	}
-	if (position.x > 0 && position.y > 0)
-	{
-		temp.x = position.x - 1;
-		temp.y = 7 - (position.y - 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-	if (position.x < 7 && position.y < 7)
-	{
-		temp.x = position.x + 1;
-		temp.y = 7 - (position.y + 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-	if (position.x < 7 && position.y > 0)
-	{
-		temp.x = position.x + 1;
-		temp.y = 7 - (position.y - 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-
-	if (position.x > 0)
-	{
-		temp.x = position.x - 1;
-		temp.y = 7 - position.y;
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-	if (position.x < 7)
-	{
-		temp.x = position.x + 1;
-		temp.y = 7 - position.y;
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-	if (position.y < 7)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y + 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
-	}
-	if (position.y > 0)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y - 1);
-		curr_p = { temp.x, 7 - temp.y };
-		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
-		{
-		}
-		else
-			moves.push_back(temp);
 	}
 	return moves;
 }
 
-std::vector<POINT> Moves::PawnThreat(POINT position, bool color, PieceBag bag)
-{
-	std::vector<POINT> moves;
-	POINT temp;
-	POINT curr_p;
-	if (color)
-	{		
-		if (position.y < 7)
-		{
-			if (position.x > 0)
-			{
-				temp.x = position.x - 1;
-				temp.y = 7 - (position.y + 1);
-				curr_p = { temp.x, 7 - temp.y };
-				moves.push_back(temp);
-			}
-			if (position.x < 7)
-			{
-				temp.x = position.x + 1;
-				temp.y = 7 - (position.y + 1);
-				curr_p = { temp.x, 7 - temp.y };
-				moves.push_back(temp);
-			}
-		}
-	}
-	if (!color)
-	{		
-		if (position.y > 0)
-		{
-			if (position.x > 0)
-			{
-				temp.x = position.x - 1;
-				temp.y = 7 - (position.y - 1);
-				curr_p = { temp.x, 7 - temp.y };
-				moves.push_back(temp);
-			}
-			if (position.x < 7)
-			{
-				temp.x = position.x + 1;
-				temp.y = 7 - (position.y - 1);
-				curr_p = { temp.x, 7 - temp.y };
-				moves.push_back(temp);
-			}
-		}
-	}
-	return moves;
-}
+
 
 
 std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
-	moves = TheKing(position, color, bag);
+	moves = KingThreat(position, color, bag);
 	//polja pod šahom
 	std::vector<POINT> blocked_move;
 	for each (Piece piece in bag.pieces)//vrti se beskonacno
@@ -217,17 +115,7 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 			if (!moves.empty())
 			{
 				blocked_move.clear();
-				if (piece.GetID() == 1) 
-				{
-					if (color) blocked_move = TheKing(black_king_position, false, bag);
-					else blocked_move = TheKing(white_king_position, true, bag);
-				}
-				else if (piece.GetID() == 6)
-				{
-					if (color) blocked_move = PawnThreat(piece.position, false, bag);
-					else blocked_move = PawnThreat(piece.position, true, bag);
-				}
-				else blocked_move = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+				blocked_move = PossibleThreat(piece.GetID(), piece.position, piece.GetColor(), bag);
 				for each (POINT piece_move in blocked_move)
 				{
 					for each (POINT king_move in moves)
@@ -785,7 +673,7 @@ bool Moves::GetFieldColor(POINT p_field)
 
 bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 {
-	if (bag.current_piece.GetID() == 6)
+	if (bag.last_piece.GetID() == 6)
 		moves = PawnThreat(field_position, bag.last_piece.GetColor(), bag);
 	else 
 		moves = PossibleMoves(bag.last_piece.GetID(), field_position, bag.last_piece.GetColor(), bag);
@@ -799,7 +687,7 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 	return false;
 }
 
-bool Moves::Under_Check(PieceBag bag, bool white_turn)
+bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position)
 {
 	for each(Piece piece in bag.pieces)
 	{
@@ -807,21 +695,15 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn)
 		{
 			moves.clear();
 			if (piece.GetID() == 1)
-			{
-				if (white_turn) moves = TheKing(black_king_position, false, bag);
-				else moves = TheKing(white_king_position, true, bag);
-			}
+				moves = KingThreat(piece.position, piece.GetColor(), bag);
 			else if (piece.GetID() == 6)
-			{
-				if (white_turn) moves = PawnThreat(piece.position, false, bag);
-				else moves = PawnThreat(piece.position, true, bag);
-			}
-			else moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+				moves = PawnThreat(piece.position, piece.GetColor(), bag);
+			else 
+				moves = PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
 
 			for each (POINT piece_move in moves)
 			{
-				if (piece_move.x == white_king_position.x && 7 - piece_move.y == white_king_position.y) return true;
-				if (piece_move.x == black_king_position.x && 7 - piece_move.y == black_king_position.y) return true;
+				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y) return true;
 			}
 		}
 		/*if (white_turn && piece.GetVectorID() == 31) break;
@@ -830,5 +712,455 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn)
 	return false;
 }
 
+POINT Moves::King_Position(bool color)
+{
+	if (color) return white_king_position;
+	return black_king_position;
+}
+
+std::vector<POINT> Moves::KingThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	if (position.x > 0 && position.y < 7)
+	{
+		temp.x = position.x - 1;
+		temp.y = 7 - (position.y + 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+
+	}
+	if (position.x > 0 && position.y > 0)
+	{
+		temp.x = position.x - 1;
+		temp.y = 7 - (position.y - 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	if (position.x < 7 && position.y < 7)
+	{
+		temp.x = position.x + 1;
+		temp.y = 7 - (position.y + 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	if (position.x < 7 && position.y > 0)
+	{
+		temp.x = position.x + 1;
+		temp.y = 7 - (position.y - 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+
+	if (position.x > 0)
+	{
+		temp.x = position.x - 1;
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	if (position.x < 7)
+	{
+		temp.x = position.x + 1;
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	if (position.y < 7)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y + 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	if (position.y > 0)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y - 1);
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p) && bag.current_piece.GetColor() == color)
+		{
+		}
+		else
+			moves.push_back(temp);
+	}
+	return moves;
+}
+
+std::vector<POINT> Moves::QueenThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	int i = 0;
+	for (i = 0; i < position.x && i < (7 - position.y); ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.x && i < position.y; ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.x; ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < 7 - position.x; ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.y; ++i)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < 7 - position.y; ++i)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	return moves;
+}
+
+std::vector<POINT> Moves::RookThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	int i = 0;
+	for (i = 0; i < position.x; ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < 7 - position.x; ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - position.y;
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.y; ++i)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < 7 - position.y; ++i)
+	{
+		temp.x = position.x;
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	return moves;
+}
+
+std::vector<POINT> Moves::BishopThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	int i = 0;
+	for (i = 0; i < position.x && i < (7 - position.y); ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < position.x && i < position.y; ++i)
+	{
+		temp.x = position.x - (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - (position.y + (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
+	{
+		temp.x = position.x + (i + 1);
+		temp.y = 7 - (position.y - (i + 1));
+		curr_p = { temp.x, 7 - temp.y };
+		if (bag.CheckField(curr_p))
+		{
+			moves.push_back(temp);
+			break;
+		}
+		else
+			moves.push_back(temp);
+	}
+	return moves;
+}
+
+std::vector<POINT> Moves::KnightThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	if (position.x > 0 && position.y < 6)
+	{
+		temp.x = position.x - 1;
+		temp.y = 7 - (position.y + 2);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x > 0 && position.y > 1)
+	{
+		temp.x = position.x - 1;
+		temp.y = 7 - (position.y - 2);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x < 7 && position.y < 6)
+	{
+		temp.x = position.x + 1;
+		temp.y = 7 - (position.y + 2);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x < 7 && position.y > 1)
+	{
+		temp.x = position.x + 1;
+		temp.y = 7 - (position.y - 2);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x > 1 && position.y < 7)
+	{
+		temp.x = position.x - 2;
+		temp.y = 7 - (position.y + 1);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x > 1 && position.y > 0)
+	{
+		temp.x = position.x - 2;
+		temp.y = 7 - (position.y - 1);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x < 6 && position.y < 7)
+	{
+		temp.x = position.x + 2;
+		temp.y = 7 - (position.y + 1);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	if (position.x < 6 && position.y > 0)
+	{
+		temp.x = position.x + 2;
+		temp.y = 7 - (position.y - 1);
+		curr_p = { temp.x, 7 - temp.y };
+		moves.push_back(temp);
+	}
+	return moves;
+}
+
+std::vector<POINT> Moves::PawnThreat(POINT position, bool color, PieceBag bag)
+{
+	std::vector<POINT> moves;
+	POINT temp;
+	POINT curr_p;
+	if (color)
+	{
+		if (position.y < 7)
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y + 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+		}
+	}
+	if (!color)
+	{
+		if (position.y > 0)
+		{
+			if (position.x > 0)
+			{
+				temp.x = position.x - 1;
+				temp.y = 7 - (position.y - 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+			if (position.x < 7)
+			{
+				temp.x = position.x + 1;
+				temp.y = 7 - (position.y - 1);
+				curr_p = { temp.x, 7 - temp.y };
+				moves.push_back(temp);
+			}
+		}
+	}
+	return moves;
+}
 
 bool operator==(const POINT &a, const POINT &b) { return (a.x == b.x && a.y == b.y); }
