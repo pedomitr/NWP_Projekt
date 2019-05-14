@@ -99,18 +99,14 @@ std::vector<POINT> Moves::PossibleThreat(int pieceID, POINT position, bool color
 	return moves;
 }
 
-
-
-
 std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 {
 	std::vector<POINT> moves;
 	moves = KingThreat(position, color, bag);
-	//polja pod šahom
 	std::vector<POINT> blocked_move;
-	for each (Piece piece in bag.pieces)//vrti se beskonacno
+	for each (Piece piece in bag.pieces)
 	{
-		if (piece.GetColor() != color && piece.in_play && piece.GetID())//kralja druge boje provjeriti indirektno
+		if (piece.GetColor() != color && piece.in_play && piece.GetID())
 		{
 			if (!moves.empty())
 			{
@@ -130,8 +126,8 @@ std::vector<POINT> Moves::KingMoves(POINT position, bool color, PieceBag bag)
 				}
 			}
 		}
-		//if (color && piece.GetVectorID() == 31) break;
-		//if (!color && piece.GetVectorID() > 15) break;
+		if (color && piece.GetVectorID() == 31) break;
+		if (!color && piece.GetVectorID() > 15) break;
 	}
 	king_moves.clear();
 	for each (POINT king_move in moves)
@@ -706,8 +702,8 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position)
 				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y) return true;
 			}
 		}
-		/*if (white_turn && piece.GetVectorID() == 31) break;
-		if (!white_turn && piece.GetVectorID() > 15) break;*/
+		if (white_turn && piece.GetVectorID() == 31) break;
+		if (!white_turn && piece.GetVectorID() > 15) break;
 	}
 	return false;
 }
