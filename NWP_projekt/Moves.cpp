@@ -478,6 +478,8 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 
 bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position)
 {
+	if (bag.last_piece.GetID() == 1)
+		king_position = bag.pieces.at(bag.last_piece.GetVectorID()).position;
 	for each(Piece piece in bag.pieces)
 	{
 		if (piece.GetColor() != white_turn && piece.in_play)
