@@ -3,6 +3,7 @@
 class Moves
 {
 	std::vector<POINT> PossibleThreat(int pieceID, POINT position, bool color, PieceBag bag);
+	std::vector<POINT> KingMove(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> KingMoves(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> QueenMoves(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> RookMoves(POINT position, bool color, PieceBag bag);
@@ -15,6 +16,7 @@ class Moves
 	std::vector<POINT> BishopThreat(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> KnightThreat(POINT position, bool color, PieceBag bag);
 	std::vector<POINT> PawnThreat(POINT position, bool color, PieceBag bag);
+	bool PushThreat(POINT curr_p, POINT position, bool color, PieceBag bag);
 	
 public:
 	bool en_passant = false;
