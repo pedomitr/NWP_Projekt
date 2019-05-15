@@ -2,22 +2,23 @@
 #include "Piecebag.h"
 class Moves
 {
-	std::vector<POINT> PossibleThreat(int pieceID, POINT position, bool color, PieceBag bag);
-	std::vector<POINT> KingMove(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> KingMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> QueenMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> RookMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> BishopMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> KnightMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> PawnMoves(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> KingThreat(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> QueenThreat(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> RookThreat(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> BishopThreat(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> KnightThreat(POINT position, bool color, PieceBag bag);
-	std::vector<POINT> PawnThreat(POINT position, bool color, PieceBag bag);
-	bool PushThreat(POINT curr_p, POINT position, bool color, PieceBag bag);
-	
+	void PossibleThreat(int pieceID, POINT position, bool color, PieceBag bag);
+	void KingMove(POINT position, bool color, PieceBag bag);
+	void KingMoves(POINT position, bool color, PieceBag bag);
+	void QueenMoves(POINT position, bool color, PieceBag bag);
+	void RookMoves(POINT position, bool color, PieceBag bag);
+	void BishopMoves(POINT position, bool color, PieceBag bag);
+	void KnightMoves(POINT position, bool color, PieceBag bag);
+	void PawnMoves(POINT position, bool color, PieceBag bag);
+	void KingThreat(POINT position, bool color, PieceBag bag);
+	void QueenThreat(POINT position, bool color, PieceBag bag);
+	void RookThreat(POINT position, bool color, PieceBag bag);
+	void BishopThreat(POINT position, bool color, PieceBag bag);
+	void KnightThreat(POINT position, bool color, PieceBag bag);
+	void PawnThreat(POINT position, bool color, PieceBag bag);
+	bool PushThreat(POINT position, bool color, PieceBag bag);
+	bool PushMove(POINT temp, bool color, PieceBag bag);
+	void CopyVector(std::vector<POINT> &a, const std::vector<POINT> &b);
 public:
 	bool en_passant = false;
 	int en_passant_ID = 0;
@@ -30,7 +31,7 @@ public:
 	~Moves();
 	std::vector<POINT> moves;
 	std::vector<POINT> king_moves;
-	std::vector<POINT> PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
+	void PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
 	bool GetFieldColor(POINT p_field);
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
 	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
