@@ -187,56 +187,8 @@ void Moves::KingMoves(POINT position, bool color, PieceBag bag)
 
 void Moves::QueenMoves(POINT position, bool color, PieceBag bag)
 {
-	POINT temp;
-	int i = 0;
-	for (i = 0; i < position.x && i < (7 - position.y); ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.x && i < position.y; ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.x; ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - position.y;
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < 7 - position.x; ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - position.y;
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.y; ++i)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
-	for (i = 0; i < 7 - position.y; ++i)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushMove(temp, color, bag)) break;
-	}
+	RookMoves(position, color, bag);
+	BishopMoves(position, color, bag);
 }
 
 void Moves::RookMoves(POINT position, bool color, PieceBag bag)
@@ -512,7 +464,6 @@ void Moves::KingThreat(POINT position, bool color, PieceBag bag)
 		temp.x = position.x - 1;
 		temp.y = 7 - (position.y + 1);
 		moves.push_back(temp);
-
 	}
 	if (position.x > 0 && position.y > 0)
 	{
@@ -532,7 +483,6 @@ void Moves::KingThreat(POINT position, bool color, PieceBag bag)
 		temp.y = 7 - (position.y - 1);
 		moves.push_back(temp);
 	}
-
 	if (position.x > 0)
 	{
 		temp.x = position.x - 1;
@@ -561,56 +511,8 @@ void Moves::KingThreat(POINT position, bool color, PieceBag bag)
 
 void Moves::QueenThreat(POINT position, bool color, PieceBag bag)
 {
-	POINT temp;
-	int i = 0;
-	for (i = 0; i < position.x && i < (7 - position.y); ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.x && i < position.y; ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.x; ++i)
-	{
-		temp.x = position.x - (i + 1);
-		temp.y = 7 - position.y;
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < 7 - position.x; ++i)
-	{
-		temp.x = position.x + (i + 1);
-		temp.y = 7 - position.y;
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < position.y; ++i)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y - (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
-	for (i = 0; i < 7 - position.y; ++i)
-	{
-		temp.x = position.x;
-		temp.y = 7 - (position.y + (i + 1));
-		if (!PushThreat(temp, color, bag)) break;
-	}
+	RookThreat(position, color, bag);
+	BishopThreat(position, color, bag);
 }
 
 void Moves::RookThreat(POINT position, bool color, PieceBag bag)
