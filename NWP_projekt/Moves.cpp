@@ -162,30 +162,27 @@ void Moves::KingMoves(POINT position, bool color, PieceBag bag)
 	CopyVector(king_moves, moves);
 	for each (Piece piece in bag.pieces)
 	{
-		if (piece.GetColor() != color && piece.in_play && piece.GetID())
+		if (king_moves.empty()) break;
+		if (piece.GetColor() != color && piece.in_play)
 		{
-			if (!king_moves.empty())
+			moves.clear();
+			PossibleThreat(piece.GetID(), piece.position, piece.GetColor(), bag);
+			for each (POINT piece_move in moves)
 			{
-				moves.clear();
-				PossibleThreat(piece.GetID(), piece.position, piece.GetColor(), bag);
-				for each (POINT piece_move in moves)
+				for each (POINT king_move in king_moves)
 				{
-					for each (POINT king_move in king_moves)
+					if (king_move == piece_move)
 					{
-						if (king_move == piece_move)
-						{
-							king_moves.erase(std::remove(king_moves.begin(), king_moves.end(), king_move), king_moves.end());//ERASE-REMOVE IDIOM
-							break;
-						}
+						king_moves.erase(std::remove(king_moves.begin(), king_moves.end(), king_move), king_moves.end());//ERASE-REMOVE IDIOM
+						break;
 					}
-					if (king_moves.empty()) break;
 				}
 			}
 		}
 		if (color && piece.GetVectorID() == 31) break;
 		if (!color && piece.GetVectorID() > 15) break;
 	}
-	CopyVector(moves, king_moves);//Error
+	CopyVector(moves, king_moves);
 }
 
 void Moves::QueenMoves(POINT position, bool color, PieceBag bag)
@@ -461,6 +458,7 @@ bool Moves::GetFieldColor(POINT p_field)
 
 bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 {
+	POINT king_position = King_Position(!white_turn);
 	moves.clear();
 	if (bag.last_piece.GetID() == 6)
 		PawnThreat(field_position, bag.last_piece.GetColor(), bag);
@@ -468,9 +466,7 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
 		PossibleMoves(bag.last_piece.GetID(), field_position, bag.last_piece.GetColor(), bag);
 	for each (POINT item in moves)
 	{
-		if (white_turn && item.x == black_king_position.x && 7 - item.y == black_king_position.y)
-			return true;
-		else if (!white_turn && item.x == white_king_position.x && 7 - item.y == white_king_position.y)
+		if(item.x == king_position.x && 7 - item.y == king_position.y)
 			return true;
 	}
 	return false;
