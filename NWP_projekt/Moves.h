@@ -17,8 +17,9 @@ class Moves
 	void KnightThreat(POINT position, bool color, PieceBag bag);
 	void PawnThreat(POINT position, bool color, PieceBag bag);
 	bool PushThreat(POINT position, bool color, PieceBag bag);
-	bool PushMove(POINT temp, bool color, PieceBag bag);
+	bool PushMove(POINT temp, bool color, PieceBag bag);	
 	void CopyVector(std::vector<POINT> &a, const std::vector<POINT> &b);
+	void CopyVector(std::vector<int> &a, const std::vector<int> &b);
 public:
 	bool en_passant = false;
 	int en_passant_ID = 0;
@@ -27,14 +28,17 @@ public:
 	bool en_passant_possible = false;
 	POINT white_king_position = { 4, 0 };
 	POINT black_king_position = { 4, 7 };	
+	std::vector<int> check_ID;
 	Moves();
 	~Moves();
+	std::vector<POINT> unmate_moves;
 	std::vector<POINT> moves;
 	std::vector<POINT> king_moves;
 	void PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
 	bool GetFieldColor(POINT p_field);
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
 	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
+	bool Checkmate(bool color, PieceBag bag);
 	POINT King_Position(bool color);
 	friend bool operator==(const POINT &a, const POINT &b);
 };

@@ -195,13 +195,11 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
 	int i = 0;
-	for (i = 0; i < position.x; ++i)
+	for (i = 0; i < position.x; ++i)//SAH MAT IDEJA ako jedan for daje šah onda spremi u posebni vector, kod svakog fora clearaj taj vector, sve stavi u pushback move il drugu funkciju,vektor spremiti u array ako ih je vise i ne sijece im se ni jedna tocka MAT
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
 		if (!PushMove(temp, color, bag)) break;
-		else
-			moves.push_back(temp);
 	}
 	for (i = 0; i < 7 - position.x; ++i)
 	{
@@ -441,7 +439,11 @@ bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position)
 				PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
 			for each (POINT piece_move in moves)
 			{
-				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y) return true;
+				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y)
+				{
+					check_ID.push_back(piece.GetVectorID());
+					return true;
+				}
 			}
 		}
 		if (white_turn && piece.GetVectorID() == 31) break;
@@ -703,12 +705,43 @@ bool Moves::PushMove(POINT temp, bool color, PieceBag bag)
 	return true;
 }
 
+bool Moves::Checkmate(bool color, PieceBag bag)
+{
+	KingMoves(King_Position(!color), !color, bag);
+	if (!king_moves.empty())
+		return false;
+	std::vector<int> temp_v;
+	CopyVector(temp_v, check_ID);
+	if (check_ID.size() > 1) return true;
+	for each(int i in check_ID)
+	{
+		Piece temp_p = bag.pieces.at(i);
+		PossibleMoves(temp_p.GetID(), temp_p.position, temp_p.GetColor(), bag);
+		if (Under_Check(bag, temp_p.GetColor(), temp_p.position)) return false;
+		for each(POINT move in moves)
+		{
+			if (Under_Check(bag, temp_p.GetColor(), { move.x, 7 - move.y }))
+				return false;
+		}
+	}	
+	return true;
+}
+
 void Moves::CopyVector(std::vector<POINT> &a, const std::vector<POINT> &b)
 {
 	a.clear();
 	for each (POINT move in b)
 	{
 		a.push_back(move);
+	}
+}
+
+void Moves::CopyVector(std::vector<int> &a, const std::vector<int> &b)
+{
+	a.clear();
+	for each (int ID in b)
+	{
+		a.push_back(ID);
 	}
 }
 
