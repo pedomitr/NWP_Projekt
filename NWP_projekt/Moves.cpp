@@ -153,6 +153,26 @@ void Moves::KingMove(POINT position, bool color, PieceBag bag)
 		if (!(bag.CheckField({ temp.x, 7 - temp.y }) && bag.current_piece.GetColor() == color))
 			moves.push_back(temp);
 	}
+	if ((white_king_big_castle && color) || (black_king_big_castle && !color))
+	{
+		temp = King_Position(color);
+		if (!bag.CheckField({ temp.x - 1 , temp.y }) && !bag.CheckField({ temp.x - 2 , temp.y }) && !bag.CheckField({ temp.x - 3 , temp.y }) &&
+			bag.CheckField({ temp.x - 4 , temp.y }) && bag.current_piece.GetID() == 3)
+		{
+			moves.push_back({ temp.x - 2, 7 - temp.y });
+			big_castle_possible = true;
+		}
+	}
+	if ((white_king_small_castle && color) || (black_king_small_castle && !color))
+	{
+		temp = King_Position(color);
+		if (!bag.CheckField({ temp.x + 1 , temp.y }) && !bag.CheckField({ temp.x + 2 , temp.y }) &&
+			bag.CheckField({ temp.x + 3, temp.y }) && bag.current_piece.GetID() == 3)
+		{
+			moves.push_back({ temp.x + 2 , 7 - temp.y });
+			small_castle_possible = true;
+		}
+	}
 }
 
 void Moves::KingMoves(POINT position, bool color, PieceBag bag)
@@ -173,7 +193,7 @@ void Moves::KingMoves(POINT position, bool color, PieceBag bag)
 				{
 					if (king_move == piece_move)
 					{
-						king_moves.erase(std::remove(king_moves.begin(), king_moves.end(), king_move), king_moves.end());//ERASE-REMOVE IDIOM
+						king_moves.erase(std::remove(king_moves.begin(), king_moves.end(), king_move), king_moves.end());
 						break;
 					}
 				}
@@ -195,7 +215,7 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
 	int i = 0;
-	for (i = 0; i < position.x; ++i)//SAH MAT IDEJA ako jedan for daje šah onda spremi u posebni vector, kod svakog fora clearaj taj vector, sve stavi u pushback move il drugu funkciju,vektor spremiti u array ako ih je vise i ne sijece im se ni jedna tocka MAT
+	for (i = 0; i < position.x; ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;

@@ -28,6 +28,12 @@ public:
 	bool en_passant_possible = false;
 	POINT white_king_position = { 4, 0 };
 	POINT black_king_position = { 4, 7 };	
+	bool white_king_big_castle = true;
+	bool white_king_small_castle = true;
+	bool black_king_big_castle = true;
+	bool black_king_small_castle = true;
+	bool big_castle_possible = false;
+	bool small_castle_possible = false;
 	std::vector<int> check_ID;
 	Moves();
 	~Moves();
