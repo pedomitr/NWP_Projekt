@@ -803,6 +803,7 @@ bool Moves::InsufficinetMaterial(bool color, PieceBag bag)
 
 bool Moves::Stalemate(bool color, PieceBag bag)
 {
+	POINT temp_p;
 	for each(Piece piece in bag.pieces)
 	{
 		if (piece.in_play)
@@ -811,7 +812,16 @@ bool Moves::Stalemate(bool color, PieceBag bag)
 			{
 				PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
 				if (!moves.empty())
-					return false;
+				{
+					temp_p = piece.position;
+					for each(POINT move in moves)
+					{
+						bag.pieces.at(piece.GetVectorID()).position = { move.x, 7 - move.y };
+						if(!Under_Check(bag, piece.GetColor(), King_Position(piece.GetColor())))
+							return false;
+					}
+					bag.pieces.at(piece.GetVectorID()).position = temp_p;
+				}
 			}
 		}
 	}
