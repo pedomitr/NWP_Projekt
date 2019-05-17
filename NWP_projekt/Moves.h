@@ -45,6 +45,7 @@ public:
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
 	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
 	bool Checkmate(bool color, PieceBag bag);
+	bool Draw(bool color, PieceBag bag);
 	POINT King_Position(bool color);
 	friend bool operator==(const POINT &a, const POINT &b);
 };

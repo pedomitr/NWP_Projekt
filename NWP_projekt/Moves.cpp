@@ -747,6 +747,69 @@ bool Moves::Checkmate(bool color, PieceBag bag)
 	return true;
 }
 
+bool Moves::Draw(bool color, PieceBag bag)
+{
+	int in_play = 0;
+	std::vector<int> remaining_white;
+	std::vector<int> remaining_black;
+	//Draw by stalemate
+	for each(Piece piece in bag.pieces)
+	{
+		if (piece.in_play)
+		{
+			++in_play;
+			if (piece.GetColor() != color)
+			{
+				PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+				if (!moves.empty())
+					return false;
+			}
+			if (piece.GetID() != 1)
+			{
+				if (color)
+					remaining_white.push_back(bag.current_piece.GetID());
+				else
+					remaining_black.push_back(bag.current_piece.GetID());
+			}
+		}
+	}
+	//Draw by insuficient material
+	if (in_play == 2)
+		return true;
+	if (in_play == 3)
+	{
+
+		if (remaining_white.empty())
+		{
+			for each(int b in remaining_black)
+			{
+				if (b == 4 && b == 5)
+					return true;
+			}
+		}
+		if (remaining_black.empty())
+		{
+			for each(int w in remaining_white)
+			{
+				if (w == 4 && w == 5)
+					return true;
+			}
+		}
+	}
+	if (in_play == 4)
+	{
+		for each(int w in remaining_white)
+		{
+			for each(int b in remaining_black)
+			{
+				if ((w == 4 || w == 5) && (b == 4 || b == 5))
+					return true;
+			}
+		}
+	}
+	return false;
+}
+
 void Moves::CopyVector(std::vector<POINT> &a, const std::vector<POINT> &b)
 {
 	a.clear();
