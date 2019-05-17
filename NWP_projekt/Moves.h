@@ -37,6 +37,11 @@ public:
 	std::vector<int> check_ID;
 	Moves();
 	~Moves();
+	int move_repeat = 0;
+	int last_white_ID;
+	int last_black_ID;
+	POINT white_play = { 8,8 };
+	POINT black_play = { 8,8 };
 	std::vector<POINT> unmate_moves;
 	std::vector<POINT> moves;
 	std::vector<POINT> king_moves;
@@ -45,7 +50,9 @@ public:
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
 	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
 	bool Checkmate(bool color, PieceBag bag);
-	bool Draw(bool color, PieceBag bag);
+	bool InsufficinetMaterial(bool color, PieceBag bag);
+	bool Stalemate(bool color, PieceBag bag);
+	bool ThreeFoldRepetition(bool color, POINT field_position, PieceBag bag);
 	POINT King_Position(bool color);
 	friend bool operator==(const POINT &a, const POINT &b);
 };
