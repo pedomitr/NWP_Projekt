@@ -94,6 +94,7 @@ void Moves::PossibleThreat(int pieceID, POINT position, bool color, PieceBag bag
 	}
 	}
 }
+
 void Moves::KingMove(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
@@ -208,6 +209,11 @@ void Moves::KingMoves(POINT position, bool color, PieceBag bag)
 void Moves::QueenMoves(POINT position, bool color, PieceBag bag)
 {
 	RookMoves(position, color, bag);
+	if (checked && rook_check)
+	{
+		rook_check = false;
+		return;
+	}
 	BishopMoves(position, color, bag);
 }
 
@@ -215,29 +221,87 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
 	int i = 0;
+	bool checker = false;
 	for (i = 0; i < position.x; ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		else
+		{
+			rook_check = true;
+			return;
+		}
 	}
 	for (i = 0; i < 7 - position.x; ++i)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - position.y;
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		{
+			rook_check = true;
+			return;
+		}
 	}
 	for (i = 0; i < position.y; ++i)
 	{
 		temp.x = position.x;
 		temp.y = 7 - (position.y - (i + 1));
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		{
+			rook_check = true;
+			return;
+		}
 	}
 	for (i = 0; i < 7 - position.y; ++i)
 	{
 		temp.x = position.x;
 		temp.y = 7 - (position.y + (i + 1));
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		{
+			rook_check = true;
+			return;
+		}
 	}
 }
 
@@ -245,35 +309,81 @@ void Moves::BishopMoves(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
 	int i = 0;
+	bool checker = false;
 	for (i = 0; i < position.x && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		if(!PushMove(temp, color, bag)) break;		
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		else return;
 	}
 	for (i = 0; i < position.x && i < position.y; ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		else return;
 	}
 	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		else return;
 	}
 	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
 		if (!PushMove(temp, color, bag)) break;
+		if (checked)
+		{
+			POINT p = { temp.x, 7 - temp.y };
+			if (King_Position(!color) == p)
+				checker = true;
+		}
+	}
+	if (checked)
+	{
+		if (!checker) moves.clear();
+		else return;
 	}
 }
 
 void Moves::KnightMoves(POINT position, bool color, PieceBag bag)
 {
 	POINT temp;
+	bool checker = false;
 	if (position.x > 0 && position.y < 6)
 	{
 		temp.x = position.x - 1;
@@ -412,67 +522,6 @@ void Moves::PawnMoves(POINT position, bool color, PieceBag bag)
 			}
 		}
 	}
-}
-
-bool Moves::GetFieldColor(POINT p_field)
-{
-	if (p_field.x % 2 == 0)
-	{
-		if (p_field.y % 2 == 0) return false;
-		return true;
-	}
-	else
-		if (p_field.y % 2 == 0) return true;
-	return false;
-}
-
-bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn )
-{
-	POINT king_position = King_Position(!white_turn);
-	moves.clear();
-	if (bag.last_piece.GetID() == 6)
-		PawnThreat(field_position, bag.last_piece.GetColor(), bag);
-	else 
-		PossibleMoves(bag.last_piece.GetID(), field_position, bag.last_piece.GetColor(), bag);
-	for each (POINT item in moves)
-	{
-		if(item.x == king_position.x && 7 - item.y == king_position.y)
-			return true;
-	}
-	return false;
-}
-
-bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position)
-{
-	bool check = false;
-	check_ID.clear();
-	if (bag.last_piece.GetID() == 1)
-		king_position = bag.pieces.at(bag.last_piece.GetVectorID()).position;
-	for each(Piece piece in bag.pieces)
-	{
-		if (piece.GetColor() != white_turn && piece.in_play)
-		{
-			moves.clear();
-			if (piece.GetID() == 1)
-				KingThreat(piece.position, piece.GetColor(), bag);
-			else if (piece.GetID() == 6)
-				PawnThreat(piece.position, piece.GetColor(), bag);
-			else 
-				PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
-			for each (POINT piece_move in moves)
-			{
-				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y)
-				{
-					check_ID.push_back(piece.GetVectorID());
-					check = true;
-					break;
-				}
-			}
-		}
-		if (white_turn && piece.GetVectorID() == 31) break;
-		if (!white_turn && piece.GetVectorID() > 15) break;
-	}
-	return check;
 }
 
 POINT Moves::King_Position(bool color)
@@ -728,50 +777,115 @@ bool Moves::PushMove(POINT temp, bool color, PieceBag bag)
 	return true;
 }
 
-bool Moves::Checkmate(bool color, PieceBag bag)
+bool Moves::GetFieldColor(POINT p_field)
 {
-	KingMoves(King_Position(!color), !color, bag);
+	if (p_field.x % 2 == 0)
+	{
+		if (p_field.y % 2 == 0) return false;
+		return true;
+	}
+	else
+		if (p_field.y % 2 == 0) return true;
+	return false;
+}
+
+bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn)
+{
+	POINT king_position = King_Position(!white_turn);
+	moves.clear();
+	if (bag.last_piece.GetID() == 6)
+		PawnThreat(field_position, bag.last_piece.GetColor(), bag);
+	else
+		PossibleMoves(bag.last_piece.GetID(), field_position, bag.last_piece.GetColor(), bag);
+	for each (POINT item in moves)
+	{
+		if (item.x == king_position.x && 7 - item.y == king_position.y)
+			return true;
+	}
+	return false;
+}
+
+bool Moves::Under_Check(PieceBag* bag, bool white_turn, POINT king_position)
+{
+	bool check = false;
+	check_ID.clear();
+	if (bag->last_piece.GetID() == 1)
+		king_position = bag->pieces.at(bag->last_piece.GetVectorID()).position;
+	for each(Piece piece in bag->pieces)
+	{
+		if (piece.GetColor() != white_turn && piece.in_play)
+		{
+			moves.clear();
+			if (piece.GetID() == 1)
+				KingThreat(piece.position, piece.GetColor(), *bag);
+			else if (piece.GetID() == 6)
+				PawnThreat(piece.position, piece.GetColor(), *bag);
+			else
+				PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), *bag);
+			for each (POINT piece_move in moves)
+			{
+				if (piece_move.x == king_position.x && 7 - piece_move.y == king_position.y)
+				{
+					check_ID.push_back(piece.GetVectorID());
+					check = true;
+					break;
+				}
+			}
+		}
+		if (white_turn && piece.GetVectorID() == 31) break;
+		if (!white_turn && piece.GetVectorID() > 15) break;
+	}
+	return check;
+}
+
+bool Moves::Checkmate(bool color, PieceBag* bag)
+{
+	KingMoves(King_Position(!color), !color, *bag);
 	if (!king_moves.empty())
 		return false;
 	std::vector<POINT> temp_m;
 	if (check_ID.size() > 1) return true;
-	for each(int i in check_ID)
+	Piece temp_p = bag->pieces.at(check_ID.front());
+	if (Blockable_Check(bag, temp_p.GetColor(), temp_p.position)) return false;
+	if (temp_p.GetID() == 6 || temp_p.GetID() == 5 || temp_p.GetID() == 1);
+	else
 	{
-		Piece temp_p = bag.pieces.at(i);
-		PossibleMoves(temp_p.GetID(), temp_p.position, temp_p.GetColor(), bag);
+		checked = true;
+		PossibleMoves(temp_p.GetID(), temp_p.position, temp_p.GetColor(), *bag);
+		checked = false;
 		CopyVector(temp_m, moves);
-		if (Under_Check(bag, temp_p.GetColor(), temp_p.position)) return false;
 		for each(POINT move in temp_m)
 		{
 			if (Blockable_Check(bag, temp_p.GetColor(), { move.x, 7 - move.y }))
 				return false;
 		}
-	}	
+	}
 	return true;
 }
 
-bool Moves::Blockable_Check(PieceBag bag, bool white_turn, POINT position)
+bool Moves::Blockable_Check(PieceBag* bag, bool white_turn, POINT position)
 {
 	POINT temp_p = { 8,8 };
-	for each(Piece piece in bag.pieces)
+	std::vector<POINT> temp_m;
+	for each(Piece piece in bag->pieces)
 	{
 		if (piece.GetColor() != white_turn && piece.in_play)
 		{
-			PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), bag);
+			PossibleMoves(piece.GetID(), piece.position, piece.GetColor(), *bag);
+			CopyVector(temp_m, moves);
 			temp_p = piece.position;
-			for each (POINT piece_move in moves)
+			for each (POINT piece_move in temp_m)
 			{
 				if (piece_move.x == position.x && 7 - piece_move.y == position.y)
 				{
-					bag.pieces.at(piece.GetVectorID()).position = temp_p;
+					bag->pieces.at(piece.GetVectorID()).position = piece_move;
 					if (!Under_Check(bag, !white_turn, King_Position(!white_turn)))
 					{
-						bag.pieces.at(piece.GetVectorID()).position = temp_p;
+						bag->pieces.at(piece.GetVectorID()).position = temp_p;
 						return true;
 					}
-					bag.pieces.at(piece.GetVectorID()).position = temp_p;
-				}
-					
+					bag->pieces.at(piece.GetVectorID()).position = temp_p;
+				}				
 			}
 		}
 	}
@@ -848,7 +962,7 @@ bool Moves::Stalemate(bool color, PieceBag bag)
 					for each(POINT move in moves)
 					{
 						bag.pieces.at(piece.GetVectorID()).position = { move.x, 7 - move.y };
-						if(!Under_Check(bag, piece.GetColor(), King_Position(piece.GetColor())))
+						if(!Under_Check(&bag, piece.GetColor(), King_Position(piece.GetColor())))
 							return false;
 					}
 					bag.pieces.at(piece.GetVectorID()).position = temp_p;
