@@ -51,9 +51,9 @@ public:
 	void PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
 	bool GetFieldColor(POINT p_field);
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
-	bool Moves::Under_Check(PieceBag* bag, bool white_turn, POINT king_position);
-	bool Moves::Blockable_Check(PieceBag* bag, bool white_turn, POINT piece_position);
-	bool Checkmate(bool color, PieceBag *bag);
+	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
+	bool Moves::Blockable_Check(PieceBag bag, bool white_turn, POINT piece_position);
+	bool Checkmate(bool color, PieceBag bag);
 	bool InsufficinetMaterial(bool color, PieceBag bag);
 	bool Stalemate(bool color, PieceBag bag);
 	bool ThreeFoldRepetition(bool color, POINT field_position, PieceBag bag);
