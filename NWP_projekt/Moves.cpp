@@ -254,8 +254,8 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
-		if (!PushMove(temp, color, bag)) break;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
