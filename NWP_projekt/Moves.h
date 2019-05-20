@@ -20,6 +20,13 @@ class Moves
 	bool PushMove(POINT temp, bool color, PieceBag bag);	
 	void CopyVector(std::vector<POINT> &a, const std::vector<POINT> &b);
 	void CopyVector(std::vector<int> &a, const std::vector<int> &b);
+	std::vector<POINT> king_moves;
+	std::vector<POINT> check_moves;
+	std::vector<int> check_ID;
+	bool rook_check = false;
+	bool checked = false;
+	bool Moves::Blockable_Check(PieceBag bag, bool white_turn, POINT piece_position);
+	bool GetFieldColor(POINT p_field);
 public:
 	bool en_passant = false;
 	int en_passant_ID = 0;
@@ -33,9 +40,7 @@ public:
 	bool black_king_big_castle = true;
 	bool black_king_small_castle = true;
 	bool big_castle_possible = false;
-	bool small_castle_possible = false;
-	bool rook_check = false;
-	std::vector<int> check_ID;
+	bool small_castle_possible = false;	
 	Moves();
 	~Moves();
 	int move_repeat = 0;
@@ -43,16 +48,10 @@ public:
 	int last_black_ID;
 	POINT white_play = { 8,8 };
 	POINT black_play = { 8,8 };
-	std::vector<POINT> unmate_moves;
 	std::vector<POINT> moves;
-	std::vector<POINT> king_moves;
-	std::vector<POINT> check_moves;
-	bool checked = false;
 	void PossibleMoves(int pieceID, POINT position, bool color, PieceBag bag);
-	bool GetFieldColor(POINT p_field);
 	bool Check(PieceBag bag, POINT field_position, bool white_turn);
 	bool Moves::Under_Check(PieceBag bag, bool white_turn, POINT king_position);
-	bool Moves::Blockable_Check(PieceBag bag, bool white_turn, POINT piece_position);
 	bool Checkmate(bool color, PieceBag bag);
 	bool InsufficinetMaterial(bool color, PieceBag bag);
 	bool Stalemate(bool color, PieceBag bag);
