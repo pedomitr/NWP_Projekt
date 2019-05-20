@@ -222,17 +222,18 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 	POINT temp;
 	int i = 0;
 	bool checker = false;
+	rook_check = false;
 	for (i = 0; i < position.x; ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - position.y;
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
@@ -248,17 +249,18 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - position.y;
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
+		if (!PushMove(temp, color, bag)) break;
 		}
 	}
 	if (checked)
 	{
 		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
 			rook_check = true;
@@ -269,17 +271,18 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 	{
 		temp.x = position.x;
 		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
 		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
 			rook_check = true;
@@ -290,17 +293,18 @@ void Moves::RookMoves(POINT position, bool color, PieceBag bag)
 	{
 		temp.x = position.x;
 		temp.y = 7 - (position.y + (i + 1));
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
 		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
 			rook_check = true;
@@ -318,86 +322,85 @@ void Moves::BishopMoves(POINT position, bool color, PieceBag bag)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
-		if(!PushMove(temp, color, bag)) break;		
 		if (checked)
 		{
-			CopyVector(check_moves, moves);
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if(!PushMove(temp, color, bag)) break;		
 	}
 	if (checked)
 	{
-		if (!checker)
+		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
-			moves.clear();
+			return;
 		}
-		else return;
 	}
 	for (i = 0; i < position.x && i < position.y; ++i)
 	{
 		temp.x = position.x - (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
-		if (!checker)
+		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
-			moves.clear();
+			return;
 		}
-		else return;
 	}
 	for (i = 0; i < (7 - position.x) && i < (7 - position.y); ++i)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y + (i + 1));
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
-		if (!checker)
+		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
-			moves.clear();
+			return;
 		}
-		else return;
 	}
 	for (i = 0; i < (7 - position.x) && i < position.y; ++i)
 	{
 		temp.x = position.x + (i + 1);
 		temp.y = 7 - (position.y - (i + 1));
-		if (!PushMove(temp, color, bag)) break;
 		if (checked)
 		{
 			POINT p = { temp.x, 7 - temp.y };
 			if (King_Position(!color) == p)
 				checker = true;
 		}
+		if (!PushMove(temp, color, bag)) break;
 	}
 	if (checked)
 	{
-		if (!checker)
+		if (!checker) moves.clear();
+		else
 		{
 			CopyVector(check_moves, moves);
-			moves.clear();
+			return;
 		}
-		else return;
 	}
 }
 
@@ -895,7 +898,7 @@ bool Moves::Blockable_Check(PieceBag bag, bool white_turn, POINT position)
 			for each (POINT piece_move in temp_m)
 			{
 				if (piece_move.x == position.x && 7 - piece_move.y == position.y)				
-						return true;				
+					return true;				
 			}
 		}
 	}
@@ -959,7 +962,9 @@ bool Moves::InsufficinetMaterial(bool color, PieceBag bag)
 bool Moves::Stalemate(bool color, PieceBag bag)
 {
 	POINT temp_p;
+	int temp_ID;
 	std::vector<POINT> temp_m;
+	bool taken = false;
 	for each(Piece piece in bag.pieces)
 	{
 		if (piece.in_play)
@@ -974,13 +979,22 @@ bool Moves::Stalemate(bool color, PieceBag bag)
 					temp_p = piece.position;
 					for each(POINT move in temp_m)
 					{
+						if (taken = bag.CheckField({ move.x, 7 - move.y }))
+						{
+							temp_ID = bag.current_piece.GetVectorID();
+							bag.pieces.at(temp_ID).in_play = false;
+						}
 						bag.pieces.at(piece.GetVectorID()).position = { move.x, 7 - move.y };
 						if (!Under_Check(bag, piece.GetColor(), King_Position(piece.GetColor())))
 						{
+							if (taken)
+								bag.pieces.at(temp_ID).in_play = true;
 							bag.pieces.at(piece.GetVectorID()).position = temp_p;
 							return false;
 						}
 					}
+					if(taken)
+						bag.pieces.at(temp_ID).in_play = true;
 					bag.pieces.at(piece.GetVectorID()).position = temp_p;
 				}
 			}
