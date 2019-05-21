@@ -815,6 +815,7 @@ bool Moves::GetFieldColor(POINT p_field)
 
 bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn)
 {
+	check_ID.clear();
 	POINT king_position = King_Position(!white_turn);
 	moves.clear();
 	if (bag.last_piece.GetID() == 6)
@@ -824,7 +825,10 @@ bool Moves::Check(PieceBag bag, POINT field_position, bool white_turn)
 	for each (POINT item in moves)
 	{
 		if (item.x == king_position.x && 7 - item.y == king_position.y)
+		{
+			check_ID.push_back(bag.last_piece.GetVectorID());
 			return true;
+		}
 	}
 	return false;
 }
