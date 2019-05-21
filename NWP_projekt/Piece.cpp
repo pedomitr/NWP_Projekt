@@ -38,7 +38,7 @@ Piece::Piece(POINT _position, bool _color, int _pieceID, int _vectorID)
 	}
 	case 6:
 	{
-		name = "p";
+		name = "";
 		break;
 	}
 	default:
